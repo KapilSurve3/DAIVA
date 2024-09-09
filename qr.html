@@ -3,52 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Scanner</title>
-    <!-- Load the UMD version of qr-scanner from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/qr-scanner/qr-scanner.umd.min.js"></script>
+    <title>QR Scanner</title>
+    <!-- Include QR Scanner library from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-scanner@latest/qr-scanner.min.js"></script>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #qr-video {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
-    <h1>QR Code Scanner</h1>
-    <video id="scanner" style="width: 100%; max-width: 500px;"></video>
-    <p>Scanned Data: <span id="qr-result">No result</span></p>
-    <p id="error-message" style="color:red;"></p> <!-- Error message -->
-
+    <!-- Video element to show the camera feed -->
+    <video id="qr-video" autoplay></video>
+    <!-- Result output -->
+    <div id="result">Scanning...</div>
+    
     <script>
-        const video = document.getElementById('scanner');
-        const qrResult = document.getElementById('qr-result');
-        const errorMessage = document.getElementById('error-message');
-
-        async function startScanner() {
-            try {
-                // Request user camera access
-                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-                video.srcObject = stream;  // Set video source
-                video.play();
-
-                // Create a QR scanner instance
-                const qrScanner = new QrScanner(video, result => {
-                    console.log('Decoded QR Code:', result);
-                    
-                    // Display result
-                    qrResult.textContent = result.data || 'No QR code detected';
-                }, {
-                    // Optional configurations
-                    returnDetailedScanResult: true
-                });
-
-                // Start QR code scanner
-                qrScanner.start().catch(error => {
-                    errorMessage.textContent = `Error starting QR scanner: ${error.message}`;
-                    console.error("Error starting QR scanner: ", error);
-                });
-            } catch (error) {
-                errorMessage.textContent = `Error accessing camera: ${error.message}`;
-                console.error("Error accessing camera: ", error);
-            }
-        }
-
-        // Start the scanner on page load
-        startScanner();
+        // Access the video element
+        const video = document.getElementById('qr-video');
+        const resultElement = document.getElementById('result');
+        
+        // Set the worker path (use the CDN for simplicity)
+        QrScanner.WORKER_PATH = 'https://cdn.jsdelivr.net/npm/qr-scanner@latest/qr-scanner-worker.min.js';
+        
+        // Initialize the QR scanner
+        const qrScanner = new QrScanner(video, result => {
+            resultElement.textContent = `QR code scanned: ${result}`;
+        }, {
+            // Optional: return detailed scan result for future API changes
+            returnDetailedScanResult: true
+        });
+        
+        // Start scanning
+        qrScanner.start().catch(error => {
+            resultElement.textContent = `Error: ${error.message}`;
+        });
     </script>
 </body>
 </html>
