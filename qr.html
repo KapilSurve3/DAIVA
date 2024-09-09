@@ -56,7 +56,14 @@
             });
         }
 
-        document.addEventListener("DOMContentLoaded", startScanner);
+        // Ensure that the library is fully loaded before using it
+        window.addEventListener('load', function() {
+            if (typeof Html5Qrcode !== 'undefined') {
+                startScanner();
+            } else {
+                console.error('Html5Qrcode is not defined');
+            }
+        });
     </script>
 </body>
 </html>
