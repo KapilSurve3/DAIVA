@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Scanner</title>
     <!-- Include QR Scanner library from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/qr-scanner@latest/qr-scanner.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qr-scanner@1.4.1/qr-scanner.min.js"></script>
     <style>
-        /* Basic styling */
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -36,17 +35,11 @@
         const video = document.getElementById('qr-video');
         const resultElement = document.getElementById('result');
         
-        // Set the worker path (use the CDN for simplicity)
-        QrScanner.WORKER_PATH = 'https://cdn.jsdelivr.net/npm/qr-scanner@latest/qr-scanner-worker.min.js';
-        
-        // Initialize the QR scanner
+        // Initialize QR Scanner
         const qrScanner = new QrScanner(video, result => {
             resultElement.textContent = `QR code scanned: ${result}`;
-        }, {
-            // Optional: return detailed scan result for future API changes
-            returnDetailedScanResult: true
         });
-        
+
         // Start scanning
         qrScanner.start().catch(error => {
             resultElement.textContent = `Error: ${error.message}`;
