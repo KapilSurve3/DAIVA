@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Layout</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="jscript.js" type="javascript"></script>
+    <script defer src="jscript.js" type="text/javascript"></script>
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
     <style>
@@ -16,24 +16,54 @@
           font-family: Arial, sans-serif;
           text-align: center;
           margin: 0;
-          padding: 20px;
+          padding: 0px;
         }
         
         #qr-reader {
+            display: block;
+            align-self: center;
+            position: relative;
             width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 400px;
+            padding: 10px 20px;
         }
         #result {
+            display: flex;
+            position: relative;
+            align-self: center;
             margin-top: 20px;
             font-size: 1.2em;
             color: #333;
-        }
-        .button {
+            max-width: 500px;
             margin: 10px;
             padding: 10px 20px;
+        }
+        .button {
+            border-color: rgb(162, 92, 0);
+            border-style: dashed;
+            background-color: rgb(1, 1, 42);
+            border-width: 5px;
+            margin: 10px;
+            padding: 10px 10px;
             font-size: 1em;
             cursor: pointer;
+            max-width: 100px;
+            color: rgb(170, 220, 254);
+            text-align: left;
+        }
+        .button1 {
+            border-color: rgb(183, 123, 46);
+            border-style:double;
+            border-radius: 100%;
+            background-color: rgb(1, 1, 42);
+            border-width: 5px;
+            margin: 10px;
+            padding: 10px 10px;
+            font-size: 1em;
+            cursor: pointer;
+            max-width: 100px;
+            color: rgb(170, 220, 254);
+            text-align: left;
         }
       </style>
        
@@ -44,14 +74,32 @@
 
     <section class="main-container" id="main-container"> 
       
-        <div class="left-content">
-            <!-- Left content goes here -->
+        <div class="left-content" >
+            <label id = "Sunnum"class="Sunnum">0</label>
+            <label id = "Moonnum"class="Moonnum">1</label>
+            <label id = "Mercurynum" class="Mercurynum">0</label>
+            <label id = "Venusnum"class="Venusnum">1</label>
+            <label id = "Marsnum"class="Marsnum">0</label>
+            <label id = "Saturnnum"class="Saturnnum">1</label>
+            <label id = "Jupiternum"class="Jupiternum">0</label>
+            <label id = "Rahunum" class="Rahunum">0</label>
+            <label id = "Ketunum" class="Ketunum">1</label>
+            <label id = "Sundeg"class="Sundeg">1</label>
+            <label id = "Moondeg"class="Moondeg">0</label>
+            <label id = "Mercurydeg" class="Mercurydeg">1</label>
+            <label id = "Venusdeg"class="Venusdeg">0</label>
+            <label id = "Marsdeg"class="Marsdeg">1</label>
+            <label id = "Saturndeg"class="Saturndeg">0</label>
+            <label id = "Jupiterdeg"class="Jupiterdeg">1</label>
+            <label id = "Rahudeg" class="Rahudeg">0</label>
+            <label id = "Ketudeg" class="Ketudeg">1</label>
+            <input placeholder="1" type="number" id="Asc" name="Asc" style="resize: none; background-color: rgb(7, 7, 30) ;left:42%;top:260px;color: rgb(114, 182, 255);position: relative; z-index: 1;">1</input>
         </div>
         <div class="mid-content">
             <div class="upper-div">
                 <label class="titlemain"> D.A.I.V.A </label>
                 <a href="#daiva-container">
-                    <img class="chakra" src="C:\Users\Kapil Santosh Surve\Desktop\Predictor 2.0\Images\Swastikad.png" alt="Chakra Image">
+                    <img class="chakra" src="https://i.ibb.co/HdxgJzQ/Swastikad.png" alt="Chakra Image">
                 </a>
                 
             </div>
@@ -73,9 +121,9 @@
         <div class="mid-content">
             <div class="upper-div">
                 <label class="mainoutput"> Hello there this is daiva how can i help u i am going to tell u how good is your career and what path u will choose </label>  
-                <img class="adhyayan" src="C:\Users\Kapil Santosh Surve\Desktop\Predictor 2.0\Images\border.png" alt="Adhyayan Image">
-                <img class="border1"id="bottom-container" src="C:\Users\Kapil Santosh Surve\Desktop\Predictor 2.0\Images\border2.png" alt="Chakra Image">
-                
+                <img class="adhyayan" src="https://i.ibb.co/n7K4wB6/border.png" alt="Adhyayan Image">
+                <img class="border1"id="bottom-container" src="https://i.ibb.co/WnnT992/border2.png" alt="Chakra Image">
+                <label class="Report" id="Report" ></label>
             </div>
 
             <div class="lower-div">
@@ -149,7 +197,7 @@
             </div>
 
             <div class="lower-div">
-               
+                <button class="button1" id="Marriage"onclick ="Predict()">Marriage</button>
             </div>
         </div>
         <div class="right-content">
