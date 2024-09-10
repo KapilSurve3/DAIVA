@@ -169,7 +169,7 @@ body {
     width: 200px;
     height: 250px;
     left: 30%;
-    top: 0%;
+    top: -10%;
     margin-top: 25%;
     font-size: 20px;
     color: rgb(201, 245, 255);
@@ -178,6 +178,7 @@ body {
     z-index: 1;
     contain: content;
     overflow-y: scroll;
+    text-align: center;
 }
 .Report{
     visibility: hidden;
@@ -224,7 +225,7 @@ body {
         font-size: medium;
         position: relative;
         top: -10%;
-        left: 15%;
+        left: 18%;
         margin-top: 45%;
         width: 190px;
         height: 100px;
@@ -296,12 +297,13 @@ body {
         top: 20%;
     }
     .mainoutput{
+        display: flex;
         font-size: medium;
         position: relative;
         top: -10%;
-        left: 15%;
+        left: 18%;
         margin-top: 45%;
-        width: 190px;
+        width: 180px;
         height: 100px;
     }
     #qr-reader {
