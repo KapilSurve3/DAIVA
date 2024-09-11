@@ -10,7 +10,7 @@ const Ketuln = document.getElementById("Ketunum");
 
 const result = document.getElementById("Report");
 
-const lagnan = document.getElementById("Asc");
+const lagnan = document.getElementById("asc");
 
 
 
@@ -19,73 +19,73 @@ function Predict()
 {
     var relatedto = "Unknown";
     var lagnalord = ""
-    if(lagnan.value == "1"|| lagnan.value == "8")
+    if(lagnan.innerText == "1"|| lagnan.innerText == "8")
     {
         lagnalord = "Mars"; 
         
     }
-    else if(lagnan.value == "2"||lagnan.value =="7")
+    else if(lagnan.innerText == "2"||lagnan.innerText =="7")
     {
         lagnalord = "Venus";  
         
     }
-    else if(lagnan.value == "3"||lagnan.value =="6")
+    else if(lagnan.innerText == "3"||lagnan.innerText =="6")
     {
         lagnalord = "Mercury";  
         
     }
-    else if(lagnan.value == "4")
+    else if(lagnan.innerText == "4")
     {
         lagnalord = "Moon"; 
        
     }
-    else if(lagnan.value == "5")
+    else if(lagnan.innerText == "5")
     {
         lagnalord = "Sun";  
         
     }
-    else if(lagnan.value == "9"||lagnan.value =="12")
+    else if(lagnan.innerText == "9"||lagnan.innerText =="12")
     {
         lagnalord = "Jupiter";  
         
     }
-    else if(lagnan.value == "10"||lagnan.value =="11")
+    else if(lagnan.innerText == "10"||lagnan.innerText =="11")
     {
         lagnalord = "Saturn";  
        
     }
 //For Career
-    if(lagnan.value == "4"|| lagnan.value == "11")
+    if(lagnan.innerText == "4"|| lagnan.innerText == "11")
     {
         lord = "Mars"; 
         result.innerText = lord
     }
-    else if(lagnan.value == "5"||lagnan.value =="10")
+    else if(lagnan.innerText == "5"||lagnan.innerText =="10")
     {
         lord = "Venus";  
         result.innerText = lord
     }
-    else if(lagnan.value == "6"||lagnan.value =="9")
+    else if(lagnan.innerText == "6"||lagnan.innerText =="9")
     {
         lord = "Mercury";  
         result.innerText = lord
     }
-    else if(lagnan.value == "7")
+    else if(lagnan.innerText == "7")
     {
         lord = "Moon"; 
         result.innerText = lord 
     }
-    else if(lagnan.value == "8")
+    else if(lagnan.innerText == "8")
     {
         lord = "Sun";  
         result.innerText = lord
     }
-    else if(lagnan.value == "12"||lagnan.value =="3")
+    else if(lagnan.innerText == "12"||lagnan.innerText =="3")
     {
         lord = "Jupiter";  
         result.innerText = lord
     }
-    else if(lagnan.value == "1"||lagnan.value =="2")
+    else if(lagnan.innerText == "1"||lagnan.innerText =="2")
     {
         lord = "Saturn";  
         result.innerText = lord
@@ -234,7 +234,7 @@ const lagnalordplacement = document.getElementById(lagnalordplace);
 
 // Rahu conditions to check for technical education
 
-let n = parseInt(lagnan.value);
+let n = parseInt(lagnan.innerText);
 let k = n-1;
 let rahupostin = parseInt(Rahuln.innerText);
 let Rahupos = rahupostin + k;
@@ -261,35 +261,35 @@ keywordrahu = "..Normal technical knowledge"
 }
 
 //This Part Displays the Love Prediction
-if(lagnan.value == "1"|| lagnan.value == "8")
+if(lagnan.innerText == "1"|| lagnan.innerText == "8")
     {
         partlord = "Venus"; 
     }
-    else if(lagnan.value == "2"||lagnan.value =="7")
+    else if(lagnan.innerText == "2"||lagnan.innerText =="7")
     {
         partlord = "Mars";    
     }
-    else if(lagnan.value == "3"||lagnan.value =="6")
+    else if(lagnan.innerText == "3"||lagnan.innerText =="6")
     {
         partlord = "Jupiter";    
     }
-    else if(lagnan.value == "4")
+    else if(lagnan.innerText == "4")
     {
         partlord = "Saturn";    
     }
-    else if(lagnan.value == "5")
+    else if(lagnan.innerText == "5")
     {
         partlord = "Saturn";     
     }
-    else if(lagnan.value == "9"||lagnan.value =="12")
+    else if(lagnan.innerText == "9"||lagnan.innerText =="12")
     {
         partlord = "Mercury";  
     }
-    else if(lagnan.value == "10")
+    else if(lagnan.innerText == "10")
     {
         partlord = "Moon";     
     }
-    else if(lagnan.value == "11")
+    else if(lagnan.innerText == "11")
     {
         partlord = "Sun";     
     }
@@ -345,67 +345,67 @@ if(lagnan.value == "1"|| lagnan.value == "8")
      partner = "Spouse of foreign origin ,Settling foreign lands after marriage is high ,Spiritual Spouse ,Might be working in Research/Hospital/Spiritual/Airport sectors."
     }
 //this part is for motherlord
-if(lagnan.value == "1")
+if(lagnan.innerText == "1")
     {
         motherlord = "moon"; 
     }
-    else if(lagnan.value == "2")
+    else if(lagnan.innerText == "2")
     {
         motherlord = "Sun";    
     }
-    else if(lagnan.value == "3"||lagnan.value =="12")
+    else if(lagnan.innerText == "3"||lagnan.innerText =="12")
     {
         motherlord = "Mercury";    
     }
-    else if(lagnan.value == "4"||lagnan.value =="11")
+    else if(lagnan.innerText == "4"||lagnan.innerText =="11")
     {
         motherlord = "Venus";    
     }
-    else if(lagnan.value == "5"||lagnan.value=="10")
+    else if(lagnan.innerText == "5"||lagnan.innerText=="10")
     {
         motherlord = "Mars";     
     }
-    else if(lagnan.value == "6"||lagnan.value =="9")
+    else if(lagnan.innerText == "6"||lagnan.innerText =="9")
     {
         motherlord = "Jupiter";  
     }
-    else if(lagnan.value == "7"||lagnan.value =="8")
+    else if(lagnan.innerText == "7"||lagnan.innerText =="8")
     {
         motherlord = "Saturn";     
     }
     const motherlordplace = motherlord.concat('num');
     const motherlordplacement = document.getElementById(motherlordplace);
 //This part is for ayabhav
-if(lagnan.value == "1"||lagnan.value =="12")
+if(lagnan.innerText == "1"||lagnan.innerText =="12")
     {
         ayalord = "Saturn"; 
     }
-    else if(lagnan.value == "2"||lagnan.value =="11")
+    else if(lagnan.innerText == "2"||lagnan.innerText =="11")
     {
         ayalord = "Jupiter";    
     }
-    else if(lagnan.value == "3"||lagnan.value =="10")
+    else if(lagnan.innerText == "3"||lagnan.innerText =="10")
     {
         ayalord = "Mars";    
     }
-    else if(lagnan.value == "4"||lagnan.value =="9")
+    else if(lagnan.innerText == "4"||lagnan.innerText =="9")
     {
         ayalord = "Venus";    
     }
-    else if(lagnan.value == "5"||lagnan.value=="8")
+    else if(lagnan.innerText == "5"||lagnan.innerText=="8")
     {
         ayalord = "Mercury";     
     }
-    else if(lagnan.value == "6")
+    else if(lagnan.innerText == "6")
     {
         ayalord = "Moon";  
     }
-    else if(lagnan.value == "7")
+    else if(lagnan.innerText == "7")
     {
         ayalord = "Sun";     
     }
 
-    else if(lagnan.value == "11")
+    else if(lagnan.innerText == "11")
     {
         ayalord = "Mercury";     
     }
@@ -413,62 +413,62 @@ if(lagnan.value == "1"||lagnan.value =="12")
     const ayalordplace = ayalord.concat('num');
     const ayalordplacement = document.getElementById(ayalordplace);
 //this is for bhagyalord
-if(lagnan.value == "1"||lagnan.value =="4")
+if(lagnan.innerText == "1"||lagnan.innerText =="4")
     {
         bhagyalord = "Jupiter";
     }
-    else if(lagnan.value == "2"||lagnan.value=="3")
+    else if(lagnan.innerText == "2"||lagnan.innerText=="3")
     {
         bhagyalord = "Saturn";    
     }
-    else if(lagnan.value == "12"||lagnan.value =="5")
+    else if(lagnan.innerText == "12"||lagnan.innerText =="5")
     {
         bhagyalord = "Mars";    
     }
-    else if(lagnan.value == "11"||lagnan.value=="6")
+    else if(lagnan.innerText == "11"||lagnan.innerText=="6")
     {
         bhagyalord = "Venus";    
     }
-    else if(lagnan.value == "10"||lagnan.value=="7")
+    else if(lagnan.innerText == "10"||lagnan.innerText=="7")
     {
         bhagyalord = "Mercury";     
     }
-    else if(lagnan.value == "9")
+    else if(lagnan.innerText == "9")
     {
         bhagyalord = "Sun";  
     }
-    else if(lagnan.value == "8")
+    else if(lagnan.innerText == "8")
     {
         bhagyalord = "Moon";     
     }
     const bhagyalordplace = bhagyalord.concat('num');
     const bhagyalordplacement = document.getElementById(bhagyalordplace);
 //this is for sukhlord
-if(lagnan.value == "1")
+if(lagnan.innerText == "1")
     {
         sukhlord = "Sun"
     }
-    else if(lagnan.value == "12")
+    else if(lagnan.innerText == "12")
     {
         sukhlord = "Moon";    
     }
-    else if(lagnan.value == "11"||lagnan.value =="2")
+    else if(lagnan.innerText == "11"||lagnan.innerText =="2")
     {
         sukhlord = "Mercury";    
     }
-    else if(lagnan.value == "10"||lagnan.value =="3")
+    else if(lagnan.innerText == "10"||lagnan.innerText =="3")
     {
         sukhlord = "Venus";    
     }
-    else if(lagnan.value == "9"||lagnan.value=="4")
+    else if(lagnan.innerText == "9"||lagnan.innerText=="4")
     {
         sukhlord = "Mars";     
     }
-    else if(lagnan.value == "8"||lagnan.value =="5")
+    else if(lagnan.innerText == "8"||lagnan.innerText =="5")
     {
         sukhlord = "Jupiter";  
     }
-    else if(lagnan.value == "7"||lagnan.value=="6")
+    else if(lagnan.innerText == "7"||lagnan.innerText=="6")
     {
         sukhlord = "Saturn";     
     }
@@ -488,4 +488,22 @@ if(lagnan.value == "1")
     result.innerText = result.innerText + "\n *Malefic Yog occuring in your chart are *\n:"+badyog;
 }
 
-//tHIS PART IS VIDEO CODE
+//tHIS PART IS draggable
+const draggable = document.querySelectorAll('.draggable')
+const houses = document.querySelectorAll(".houses")
+
+draggable.forEach(draggable=>{
+    draggable.addEventListener('dragstart',()=>{
+        draggable.classList.add('dragging')
+    })
+    draggable.addEventListener('dragend',()=>{
+        draggable.classList.remove('dragging')
+    })
+    houses.forEach(houses=>{
+        houses.addEventListener('dragover',e =>{
+        e.preventDefault()
+        const draggable = document.querySelector(".dragging")
+        houses.appendChild(draggable)
+        })
+    })
+})
