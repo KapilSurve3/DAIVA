@@ -77,6 +77,11 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+.houses{
+    display: block;
+    height: 100px;
+    width: 30px;
+}
 .left-content, .right-content {
     flex: 2; /* 2:3:2 ratio */
     padding: 10px;
@@ -124,6 +129,10 @@ body {
     width: 100%;
     max-width: 400px;
     height: 200px; /* Maintain aspect ratio */
+}
+.QR {
+    width: 80%;
+    height: 40%; /* Maintain aspect ratio */
 }
 
 .adhyayan{
@@ -174,7 +183,7 @@ body {
     font-size: 20px;
     color: rgb(201, 245, 255);
     background-size: auto;
-    animation: animate 3s linear infinite; 
+
     z-index: 1;
     contain: content;
     overflow-y: scroll;
@@ -203,6 +212,11 @@ body {
         margin-right: 5%;
         padding: 0 10px;
     }
+    .scan-container{
+        margin-left: 5%;
+        margin-right: 5%;
+        padding: 0 10px;
+    }
     .chakra {
         max-width: 300px; /* Smaller max width for tablet */
         max-height: 300px;
@@ -212,6 +226,10 @@ body {
         max-height: 300px;
     }
     .border1{
+        max-width: 400px;
+        max-height: 200px;
+    }
+    .QR{
         max-width: 400px;
         max-height: 200px;
     }
@@ -238,8 +256,11 @@ body {
         font-size: 0.9em;
     }
 
-    #result {
+    .result {
+        display: block;
+        max-width: 100px;
         font-size: 1em;
+        
     }
 }
 
@@ -257,6 +278,13 @@ body {
         padding: 10px;
     }
     .daiva-container{
+        flex-direction: column; /* Stack the content vertically */
+        margin-left: 10%;
+        margin-right: 10%;
+        height: 100vh;
+        padding: 10px;
+    }
+    .scan-container{
         flex-direction: column; /* Stack the content vertically */
         margin-left: 10%;
         margin-right: 10%;
@@ -286,15 +314,23 @@ body {
         max-height: 250px;
     }
     .border1{
-        max-width: 200px;
-        max-height: 200px;
+        max-width: 80%;
+        max-height: 80%;
         visibility:visible;
+    }
+    .QR{
+        padding-top: 10%;
+        max-width: 80%;
+        max-height: 40%;
+        
     }
     .titlemain{
         font-size:xx-large;
         position: relative;
         left: -2%;
         top: 20%;
+        animation: none;
+        -webkit-box-reflect: none;
     }
     .mainoutput{
         display: flex;
@@ -315,19 +351,25 @@ body {
         padding: 8px 16px;
     }
 
-    #result {
+    .result {
         font-size: 0.9em;
+        width: 200px;
+        contain: content;
+        overflow-x: scroll;
     }
     .Report{
         visibility:visible;
         display: block;
         position: relative;
+        border-color: #a1ccff;
+        border-style:double;
+        align-self: center;
         height:180px;
-        width:180px;
-        top: -30%;
-        left: 18%;
+        width:90%;
+        top: 0%;
+        left: 10px;
         background-color: #001c27;
-        color: #9de3ff ;
+        color: #96e1ff ;
         background: linear-gradient(to left,rgba(1, 9, 48, 0.79),rgba(0, 9, 40, 0.658));
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
