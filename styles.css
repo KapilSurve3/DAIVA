@@ -77,11 +77,7 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
-.houses{
-    display: block;
-    height: 100px;
-    width: 30px;
-}
+
 .left-content, .right-content {
     flex: 2; /* 2:3:2 ratio */
     padding: 10px;
@@ -132,7 +128,8 @@ body {
 }
 .QR {
     width: 80%;
-    height: 40%; /* Maintain aspect ratio */
+  
+    height: 80%; /* Maintain aspect ratio */
 }
 
 .adhyayan{
@@ -321,7 +318,7 @@ body {
     .QR{
         padding-top: 10%;
         max-width: 80%;
-        max-height: 40%;
+        max-height: 200px;
         
     }
     .titlemain{
