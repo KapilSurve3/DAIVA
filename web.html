@@ -152,79 +152,73 @@
         <div class="mid-content">
             <div class="upper-div">
                 <img class="QR" src="https://i.ibb.co/WnnT992/border2.png">
-                <div id="planethouse" class="houses">
-                    <img class="draggable" draggable="true" id="Sunimage" src="https://i.ibb.co/Yktxcnx/Sun.png" style="position:relative;width: 20px;height: 20px;z-index: 1;">
-                    <img class="draggable" draggable="true" id="Moonimage" src="https://i.ibb.co/w7RtG9c/Moon.png" style="position:relative;width: 20px;height: 20px;z-index: 1;">
-                </div>  
-                <div id="h1" class="houses">
-                    <img class="draggable" draggable="true" id="Moonimage" src="https://i.ibb.co/w7RtG9c/Moon.png" style="position:relative;width: 20px;height: 20px;z-index: 1;">
-                </div>
-                
-            </div>
-
-            <div class="lower-div">
+               
                 <div id="qr-reader"></div>
                 <label id="result">Scan a QR code to see the result here</label>
                 <button class="button" id="start-btn">Start Scanner</button>
                 <button class="button" id="stop-btn">Stop Scanner</button>
+                
+                <script>
+                    let html5QrCode;
+            
+                    function onScanSuccess(qrCodeMessage) {
+                        // Handle the result here
+                        document.getElementById('result').innerText = `${qrCodeMessage}`;
+                    }
+            
+                    function onScanError(errorMessage) {
+                        // Handle scan errors here
+                        console.warn(`QR Code scan error: ${errorMessage}`);
+                    }
+            
+                    function startScanner() {
+                        if (typeof Html5Qrcode === 'undefined') {
+                            console.error('Html5Qrcode is not available');
+                            return;
+                        }
+            
+                        html5QrCode = new Html5Qrcode("qr-reader");
+            
+                        html5QrCode.start(
+                            { facingMode: "environment" }, // Use the back camera
+                            {
+                                fps: 10,    // Optional, frames per second
+                                qrbox: 250  // Optional, width and height of the scanning box
+                            },
+                            onScanSuccess,
+                            onScanError
+                        ).catch((err) => {
+                            console.error(`Failed to start scanning: ${err}`);
+                        });
+                    }
+            
+                    function stopScanner() {
+                        if (html5QrCode) {
+                            html5QrCode.stop().then(() => {
+                                console.log("QR Code scanning stopped.");
+                            }).catch((err) => {
+                                console.error(`Failed to stop scanning: ${err}`);
+                            });
+                        }
+                    }
+            
+                    // Attach event listeners to the buttons
+                    document.getElementById('start-btn').addEventListener('click', startScanner);
+                    document.getElementById('stop-btn').addEventListener('click', stopScanner);
+                </script>
+                
+            </div>
+
+            <div class="lower-div">
+                
                 <button class="button1" id="Career" pys-onClick ="DECODE" onclick ="Predict()">Predict</button>
             </div>
-            
         </div>
         <div class="right-content">
             <!-- Right content goes here -->
         </div>
     </section>
-         
-    <script>
-        let html5QrCode;
-
-        function onScanSuccess(qrCodeMessage) {
-            // Handle the result here
-            document.getElementById('result').innerText = `${qrCodeMessage}`;
-        }
-
-        function onScanError(errorMessage) {
-            // Handle scan errors here
-            console.warn(`QR Code scan error: ${errorMessage}`);
-        }
-
-        function startScanner() {
-            if (typeof Html5Qrcode === 'undefined') {
-                console.error('Html5Qrcode is not available');
-                return;
-            }
-
-            html5QrCode = new Html5Qrcode("qr-reader");
-
-            html5QrCode.start(
-                { facingMode: "environment" }, // Use the back camera
-                {
-                    fps: 10,    // Optional, frames per second
-                    qrbox: 250  // Optional, width and height of the scanning box
-                },
-                onScanSuccess,
-                onScanError
-            ).catch((err) => {
-                console.error(`Failed to start scanning: ${err}`);
-            });
-        }
-
-        function stopScanner() {
-            if (html5QrCode) {
-                html5QrCode.stop().then(() => {
-                    console.log("QR Code scanning stopped.");
-                }).catch((err) => {
-                    console.error(`Failed to stop scanning: ${err}`);
-                });
-            }
-        }
-
-        // Attach event listeners to the buttons
-        document.getElementById('start-btn').addEventListener('click', startScanner);
-        document.getElementById('stop-btn').addEventListener('click', stopScanner);
-    </script>
-    
+  
     <py-script>
         from js import document
         def DECODE(*arg,**kwargs):
