@@ -489,21 +489,3 @@ if(lagnan.innerText == "1")
 }
 
 //tHIS PART IS draggable
-const draggable = document.querySelectorAll('.draggable')
-const houses = document.querySelectorAll(".houses")
-
-draggable.forEach(draggable=>{
-    draggable.addEventListener('dragstart',()=>{
-        draggable.classList.add('dragging')
-    })
-    draggable.addEventListener('dragend',()=>{
-        draggable.classList.remove('dragging')
-    })
-    houses.forEach(houses=>{
-        houses.addEventListener('dragover',e =>{
-        e.preventDefault()
-        const draggable = document.querySelector(".dragging")
-        houses.appendChild(draggable)
-        })
-    })
-})
