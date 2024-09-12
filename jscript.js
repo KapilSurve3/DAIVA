@@ -488,4 +488,38 @@ if(lagnan.innerText == "1")
     result.innerText = result.innerText + "\n *Malefic Yog occuring in your chart are *\n:"+badyog;
 }
 
-//tHIS PART IS draggable
+//tHIS PART IS Translation
+let isTranslated = false;
+
+document.getElementById('pbutton').addEventListener('click', function() {
+    const img = document.getElementById('pbuttonimg');
+    const button = document.getElementById('pbutton');
+    const panel = document.getElementById('commandpanel');
+    const bottomFixed = document.getElementById('bottom-fixed');
+
+    if (!isTranslated) {
+        // Translate all elements by 30% on Y-axis
+        img.style.transform = 'translateY(-450%)';
+        button.style.transform = 'translateY(-450%)';
+        panel.style.transform = 'translateY(-90%)';
+        bottomFixed.style.transform = 'translateY(-340%)';
+    } else {
+        // Reset to original position
+        img.style.transform = 'translateY(5%)';
+        button.style.transform = 'translateY(5%)';
+        panel.style.transform = 'translateY(0)';
+        bottomFixed.style.transform = 'translateY(0)';
+    }
+
+    // Toggle the state
+    isTranslated = !isTranslated;
+});
+//Audio segment
+function playAudio() {
+    var audio = document.getElementById("myAudio");
+    audio.play();
+  }
+function playAudio2() {
+var audio = document.getElementById("myAudio2");
+audio.play();
+}
