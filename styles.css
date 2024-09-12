@@ -21,7 +21,58 @@ body {
     margin: 0 0 0 0;
     z-index: 1;
 }
-
+.button3{
+    visibility: hidden;
+    position: fixed;
+    bottom:5%;
+    left: 50%;
+    height: 50px;
+    width: 50px;
+    z-index: 3;
+}
+.imbutton3{
+    visibility: hidden;
+    position: fixed;
+    bottom:5%;
+    left: 50%;
+    height: 50px;
+    width: 50px;
+   
+    z-index: 2;
+}
+.Commandpanel{
+    visibility: hidden;
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom:0;
+    height: 40%;
+    width: 100%;
+    align-self: center;
+    background-image: url();
+}
+.form-container {
+    margin-top: 10px;
+}
+.form-row {
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+    
+}
+.form-row input {
+    padding: 5px;
+}
+.button-row {
+    display: flex;
+    
+}
+.button4 {
+    right: 20%;
+    display: block;
+    padding-right: 10%;
+    cursor: pointer;
+}
 .left-fixed, .right-fixed {
     position: fixed;
     top: 0;
@@ -33,9 +84,23 @@ body {
     background-color: #f4f4f4;
     padding: 0;
     overflow-y: auto;
-    z-index: 1; /* Ensure fixed elements are above other content */
+    z-index: 2; /* Ensure fixed elements are above other content */
 }
-
+.bottom-fixed{
+    visibility: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 5%;
+    min-height: 20px;
+    max-height: 100px;
+    background: transparent;
+    padding: 0;
+    overflow-x: auto;
+    z-index: 2; /* Ensure fixed elements are above other content */
+}
 .left-fixed {
     left: 0;
 }
@@ -44,6 +109,9 @@ body {
     right: 0;
 }
 
+.bottom-fixed{
+    bottom: 0;
+}
 .main-container {
     display: flex;
     flex-direction: row;
@@ -54,6 +122,10 @@ body {
     height: 100vh;
     padding: 0;
     box-sizing: border-box;
+}
+.data{
+    top: 20%;
+    color:#96e1ff
 }
 .daiva-container{
     display: flex;
@@ -151,6 +223,13 @@ body {
     z-index: 1;
   
 }
+.result {
+    color: rgb(174, 148, 65);
+    font-size: 0.9em;
+    width: 200px;
+    contain: content;
+    overflow-x: scroll;
+}
 @keyframes animate {
     0%,18%,20%,50%,60%,65%
     {
@@ -167,6 +246,9 @@ body {
         0 0 160px #0e9bff44;
 
     }
+}
+.imbutton3, .button3, .Commandpanel, .bottom-fixed {
+    transition: transform 0.3s ease; /* Smooth transition effect */
 }
 .mainoutput{
     display: block;
@@ -266,7 +348,29 @@ body {
     .left-fixed, .right-fixed {
         width: 10%; /* Keep the fixed parts visible with 10% width */
     }
-
+    .bottom-fixed{
+        visibility: visible;
+        height:10%;
+    }
+    .button3{
+        visibility: visible;
+        left: 45%;
+        background-color: transparent;
+    }
+    .imbutton3{
+        visibility: visible;
+        left: 45%;
+        background-image: url("https://i.ibb.co/MhrKf60/Uparrow.png");
+    }
+    .Commandpanel{
+        visibility: visible;
+        background-color: rgba(114, 190, 252, 0.084);
+        background: linear-gradient(to left,rgba(207, 234, 255, 0.232),rgba(116, 212, 253, 0.658));
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 1;
+        bottom: -40%;
+    }
     .main-container {
         flex-direction: column; /* Stack the content vertically */
         margin-left: 10%;
@@ -311,6 +415,7 @@ body {
         max-height: 250px;
     }
     .border1{
+        position: fixed;
         max-width: 80%;
         max-height: 80%;
         visibility:visible;
@@ -347,10 +452,13 @@ body {
         font-size: 0.8em;
         padding: 8px 16px;
     }
-
+    .data{
+        display: block;
+    }
     .result {
+        color: rgb(174, 148, 65);
         font-size: 0.9em;
-        width: 200px;
+        margin-left: 10%;
         contain: content;
         overflow-x: scroll;
     }
@@ -361,7 +469,7 @@ body {
         border-color: #a1ccff;
         border-style:double;
         align-self: center;
-        height:180px;
+        height:90%;
         width:90%;
         top: 0%;
         left: 10px;
