@@ -15,6 +15,7 @@
     <py-env>
         - matplotlib
         - pandas
+        - pyodide.http
     </py-env>
     <style>
         body{
@@ -29,22 +30,20 @@
         
         #qr-reader {
             display: block;
-            align-self: center;
+            align-self: left;
             position: relative;
             width: 100%;
             max-width: 400px;
             padding: 10px 20px;
         }
         #result {
-            display: flex;
+            display: block;
             position: relative;
-            align-self: center;
             margin-top: 20px;
+            margin-left: 10%;
             font-size: 1.2em;
-            color: #333;
-            max-width: 400px;
-            margin: 10px;
-            padding: 10px 20px;
+            color: #ffda83;
+            max-width: 80%;
             contain: content;
         }
         .button {
@@ -81,42 +80,87 @@
 <body>
     <img class="left-fixed" style="border: 0" src="https://i.ibb.co/68Znh4c/Kundalibackground1.png">
     <img class="right-fixed" style="border: 0" src="https://i.ibb.co/68Znh4c/Kundalibackground1.png">
+    <img id="bottom-fixed" class="bottom-fixed" style="border: 0;"src="https://i.ibb.co/PmkGLCf/bottomline.png">
 
+    <img id ="pbuttonimg" src="https://i.ibb.co/MhrKf60/Uparrow.png" class="imbutton3">
+    <button id="pbutton" class="button3" style="border: 0;" onclick="playAudio2()"></button>
+    <audio id = "myAudio2" src="Suddenvibration.mp3"  ></audio>
+    <div id ="commandpanel" class="Commandpanel">
+        <div class="form-container" style="padding-top: 10%;">
+            <div class="form-row">
+                <label for="id2">id: </label> 
+                <input type="number" id="id2" name="id2" placeholder="Enter id">
+                <button id="updateChart" class="button4">Load Chart</button>
+            </div>
+            <div class="form-row">
+                <label for="Gender">sex: </label>
+                <input type="text" id="gender" name="gender" placeholder="Enter Gender">
+                <button id="GetChart" class="button4" pys-onClick="QRFetch" >Get QR</button>
+            </div>
+            <div class="form-row">
+                <label for="dob2">Date of Birth:</label>
+                <input type="date" id="dob2" name="dob2">
+            </div>
+           
+            
+        </div>
+    </div>
     <section class="main-container" id="main-container"> 
       
         <div class="left-content" >
-            <label id ="asc" class="asc">5</label>
-            <label id = "Sunnum"class="Sunnum">0</label>
-            <label id = "Moonnum"class="Moonnum">1</label>
-            <label id = "Mercurynum" class="Mercurynum">0</label>
-            <label id = "Venusnum"class="Venusnum">1</label>
-            <label id = "Marsnum"class="Marsnum">0</label>
-            <label id = "Saturnnum"class="Saturnnum">1</label>
-            <label id = "Jupiternum"class="Jupiternum">0</label>
-            <label id = "Rahunum" class="Rahunum">0</label>
-            <label id = "Ketunum" class="Ketunum">1</label>
-            <label id = "Sundeg"class="Sundeg">1</label>
-            <label id = "Moondeg"class="Moondeg">0</label>
-            <label id = "Mercurydeg" class="Mercurydeg">1</label>
-            <label id = "Venusdeg"class="Venusdeg">0</label>
-            <label id = "Marsdeg"class="Marsdeg">1</label>
-            <label id = "Saturndeg"class="Saturndeg">0</label>
-            <label id = "Jupiterdeg"class="Jupiterdeg">1</label>
-            <label id = "Rahudeg" class="Rahudeg">0</label>
-            <label id = "Ketudeg" class="Ketudeg">1</label>
+            <label id ="asc2" class="data">1</label>
+                <label id = "Sunnum2"class="data">0</label>
+                <label id = "Moonnum2"class="data">1</label>
+                <label id = "Mercurynum2" class="data">0</label>
+                <label id = "Venusnum2"class="data">1</label>
+                <label id = "Marsnum2"class="data">0</label>
+                <label id = "Saturnnum2"class="data">1</label>
+                <label id = "Jupiternum2"class="data">0</label>
+                <label id = "Rahunum2" class="data">0</label>
+                <label id = "Ketunum2" class="data">1</label>
+                <label id = "Sundeg2"class="data">1</label>
+                <label id = "Moondeg2"class="data">0</label>
+                <label id = "Mercurydeg2" class="data">1</label>
+                <label id = "Venusdeg2"class="data">0</label>
+                <label id = "Marsdeg2"class="data">1</label>
+                <label id = "Saturndeg2"class="data">0</label>
+                <label id = "Jupiterdeg2"class="data">1</label>
+                <label id = "Rahudeg2" class="data">0</label>
+                <label id = "Ketudeg2" class="data">1</label>
             
         </div>
         <div class="mid-content">
             <div class="upper-div">
                 <label class="titlemain"> D.A.I.V.A </label>
                 <a href="#daiva-container">
-                    <img class="chakra" src="https://i.ibb.co/HdxgJzQ/Swastikad.png" alt="Chakra Image">
+                    <img class="chakra" src="https://i.ibb.co/HdxgJzQ/Swastikad.png" onclick="playAudio()" >
+                    <audio id = "myAudio" src="fourbars.mp3"  ></audio>
                 </a>
+            
                 
             </div>
 
             <div class="lower-div">
-                
+                <label id ="asc" class="data">1</label>
+                <label id = "Sunnum"class="data">0</label>
+                <label id = "Moonnum"class="data">1</label>
+                <label id = "Mercurynum" class="data">0</label>
+                <label id = "Venusnum"class="data">1</label>
+                <label id = "Marsnum"class="data">0</label>
+                <label id = "Saturnnum"class="data">1</label>
+                <label id = "Jupiternum"class="data">0</label>
+                <label id = "Rahunum" class="data">0</label>
+                <label id = "Ketunum" class="data">1</label>
+                <label id = "Sundeg"class="data">1</label>
+                <label id = "Moondeg"class="data">0</label>
+                <label id = "Mercurydeg" class="data">1</label>
+                <label id = "Venusdeg"class="data">0</label>
+                <label id = "Marsdeg"class="data">1</label>
+                <label id = "Saturndeg"class="data">0</label>
+                <label id = "Jupiterdeg"class="data">1</label>
+                <label id = "Rahudeg" class="data">0</label>
+                <label id = "Ketudeg" class="data">1</label>
+            
 
             </div>
         </div>
@@ -132,7 +176,7 @@
             <div class="upper-div">
                 <label class="mainoutput"> Hello there this is daiva how can i help u i am going to tell u how good is your career and what path u will choose  </label>  
                 <img class="adhyayan" src="https://i.ibb.co/n7K4wB6/border.png" alt="Adhyayan Image">
-                <img class="border1"id="bottom-container" src="https://i.ibb.co/cg4Pwtf/Chart.png" alt="Chart"> alt="Chakra Image">
+                <img class="border1"id="bottom-container" src="https://i.ibb.co/cg4Pwtf/Chart.png" alt="Chart"> 
               
             </div>
 
@@ -154,7 +198,7 @@
                 <img class="QR" src="https://i.ibb.co/WnnT992/border2.png">
                
                 <div id="qr-reader"></div>
-                <label id="result">Scan a QR code to see the result here</label>
+                <label class="result" id="result">Scan a QR code to see the result here</label>
                 <button class="button" id="start-btn">Start Scanner</button>
                 <button class="button" id="stop-btn">Stop Scanner</button>
                 
@@ -210,61 +254,141 @@
             </div>
 
             <div class="lower-div">
-                
-                <button class="button1" id="Career" pys-onClick ="DECODE" onclick ="Predict()">Predict</button>
+                <button class="button1" ID="Predictro"onclick ="Predict()">PREDICT</button> 
+                <button class="button1" id="Marriage" pys-onClick ="DECODE" >MILAN</button>
+                <button class="button1" id="Switcher" pys-onClick ="Switchchart">MYCHART</button>
             </div>
         </div>
         <div class="right-content">
             <!-- Right content goes here -->
         </div>
     </section>
+
+    
   
     <py-script>
         from js import document
+        from js import window
+        import pandas as pd
+        from pyodide.http import open_url
+        
+        def Switchchart(*arg,**kwargs):
+            asc = Element("asc")
+            sunch = Element('Sunnum')
+            moonch= Element('Moonnum')
+            mercurych = Element('Mercurynum')
+            venusch = Element('Venusnum')
+            marsch = Element('Marsnum')
+            saturnch = Element('Saturnnum')
+            Jupiterch = Element('Jupiternum')
+            Rahuch = Element('Rahunum')
+            Ketuch = Element('Ketunum')
+            sunch.write(document.getElementById("Sunnum2").innerText)
+            moonch.write(document.getElementById("Moonnum2").innerText)
+            mercurych.write(document.getElementById("Mercurynum2").innerText)
+            venusch.write(document.getElementById("Venusnum2").innerText)
+            marsch.write(document.getElementById("Marsnum2").innerText)
+            saturnch.write(document.getElementById("Saturnnum2").innerText)
+            Jupiterch.write(document.getElementById("Jupiternum2").innerText)
+            Rahuch.write(document.getElementById("Rahunum2").innerText)
+            Ketuch.write(document.getElementById("Ketunum2").innerText)
+            asc.write(document.getElementById("asc2").innerText)
+
+            sunch = Element('Sundeg')
+            moonch= Element('Moondeg')
+            mercurych = Element('Mercurydeg')
+            venusch = Element('Venusdeg')
+            marsch = Element('Marsdeg')
+            saturnch = Element('Saturndeg')
+            Jupiterch = Element('Jupiterdeg')
+            Rahuch = Element('Rahudeg')
+            Ketuch = Element('Ketudeg')
+            sunch.write(document.getElementById("Sundeg2").innerText)
+            moonch.write(document.getElementById("Moondeg2").innerText)
+            mercurych.write(document.getElementById("Mercurydeg2").innerText)
+            venusch.write(document.getElementById("Venusdeg2").innerText)
+            marsch.write(document.getElementById("Marsdeg2").innerText)
+            saturnch.write(document.getElementById("Saturndeg2").innerText)
+            Jupiterch.write(document.getElementById("Jupiterdeg2").innerText)
+            Rahuch.write(document.getElementById("Rahudeg2").innerText)
+            Ketuch.write(document.getElementById("Ketudeg2").innerText)
+
+        def QRFetch(*arg,**kwargs):
+            window.open("https://jmo1ozciqh2bfonxzrhgzw.on.drv.tw/www.DAIVAQR.com/", "_blank")
+
+            
         def DECODE(*arg,**kwargs):
-            wcode = document.getElementById("result").innerText
-            imp,placements,degrees = wcode.split('#')
+            laxmi_chautisa = [
+            [16, 9, 4, 5],
+            [3, 6, 14, 10],
+            [13, 12, 1, 8],
+            [2, 7, 14, 11]
+            ]
+            # Function to decrypt the text
+            def decrypt(encrypted_text):
+                decrypted_text = ""
+                n = len(laxmi_chautisa)
+                
+                for i, char in enumerate(encrypted_text):
+                    # Get the Unicode value of the encrypted character
+                    unicode_val = ord(char)
+                    
+                    # Get the position in the magic square (row and column)
+                    row = i % n
+                    col = i % n
+                    
+                    # Reverse the shift using the magic square value
+                    original_unicode = unicode_val - laxmi_chautisa[row][col]
+                    
+                    # Convert back to character and add to decrypted text
+                    decrypted_text += chr(original_unicode)
+                
+                return decrypted_text
+
+            dcode = decrypt(document.getElementById("result").innerText)
+            wcode = dcode
+            imp,placements,degrees,id = wcode.split('#')
             asc,moondeg = imp.split("/")
             sunpl,moonpl,mercurypl,venuspl,marspl,saturnpl,jupiterpl,rahupl,ketupl = placements.split('/')
             sundeg,mercurydeg,venusdeg,marsdeg,saturndeg,jupiterdeg,rahudeg,ketudeg = degrees.split('/')
-            sunplin= Element('Sunnum')
+            sunplin= Element('Sunnum2')
             sunplin.write(sunpl)
-            moonplin= Element('Moonnum')
+            moonplin= Element('Moonnum2')
             moonplin.write(moonpl) 
-            mercuryplin = Element('Mercurynum')
+            mercuryplin = Element('Mercurynum2')
             mercuryplin.write(mercurypl)
-            venusplin = Element('Venusnum')
+            venusplin = Element('Venusnum2')
             venusplin.write(venuspl)
-            marsplin = Element('Marsnum')
+            marsplin = Element('Marsnum2')
             marsplin.write(marspl)
-            saturnplin = Element('Saturnnum')
+            saturnplin = Element('Saturnnum2')
             saturnplin.write(saturnpl)
-            jupiterplin = Element('Jupiternum')
+            jupiterplin = Element('Jupiternum2')
             jupiterplin.write(jupiterpl)
-            rahuplin = Element('Rahunum')
+            rahuplin = Element('Rahunum2')
             rahuplin.write(rahupl)
-            ketuplin = Element('Ketunum')
+            ketuplin = Element('Ketunum2')
             ketuplin.write(ketupl)
-            asci = Element('asc')
+            asci = Element('asc2')
             asci.write(asc)
 
-            sunde= Element('Sundeg')  
+            sunde= Element('Sundeg2')  
             sunde.write(sundeg)
-            moonde= Element('Moondeg')
+            moonde= Element('Moondeg2')
             moonde.write(moondeg)  
-            mercuryde = Element('Mercurydeg')
+            mercuryde = Element('Mercurydeg2')
             mercuryde.write(mercurydeg)
-            venusde = Element('Venusdeg')
+            venusde = Element('Venusdeg2')
             venusde.write(venusdeg)
-            marsde = Element('Marsdeg')
+            marsde = Element('Marsdeg2')
             marsde.write(marsdeg)
-            saturnde = Element('Saturndeg')
+            saturnde = Element('Saturndeg2')
             saturnde.write(saturndeg)
-            jupiterde = Element('Jupiterdeg')
+            jupiterde = Element('Jupiterdeg2')
             jupiterde.write(jupiterdeg)
-            rahude = Element('Rahudeg')
+            rahude = Element('Rahudeg2')
             rahude.write(rahudeg)
-            ketude = Element('Ketudeg')
+            ketude = Element('Ketudeg2')
             ketude.write(ketudeg)
             
     </py-script>
