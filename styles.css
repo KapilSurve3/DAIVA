@@ -226,7 +226,8 @@ body {
 .result {
     color: rgb(174, 148, 65);
     font-size: 0.9em;
-    width: 200px;
+    
+    width: 100%;
     contain: content;
     overflow-x: scroll;
 }
@@ -263,7 +264,6 @@ body {
     color: rgb(201, 245, 255);
     background-size: auto;
 
-    z-index: 1;
     contain: content;
     overflow-y: scroll;
     text-align: center;
@@ -438,7 +438,7 @@ body {
         display: flex;
         font-size: medium;
         position: relative;
-        top: -10%;
+        top: -12%;
         left: 18%;
         margin-top: 45%;
         width: 180px;
@@ -458,7 +458,7 @@ body {
     .result {
         color: rgb(174, 148, 65);
         font-size: 0.9em;
-        margin-left: 10%;
+        margin-left: 0%;
         contain: content;
         overflow-x: scroll;
     }
