@@ -12,6 +12,7 @@
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
     <script defer src ="https://pyscript.net/alpha/pyscript.js"></script>
+
     <py-env>
         - matplotlib
         - pandas
@@ -39,8 +40,9 @@
         #result {
             display: block;
             position: relative;
-            margin-top: 20px;
-            margin-left: 10%;
+            margin-top: 10px; 
+            left: 10%;
+            
             font-size: 1.2em;
             color: #ffda83;
             max-width: 80%;
@@ -74,6 +76,20 @@
             color: rgb(170, 220, 254);
             text-align: left;
         }
+        .button4{
+            border-radius: 20%;
+            border-color: #caa851;
+            border-style:inset;
+            background-color: rgb(1, 1, 42);
+            border-width: 5px;
+            margin: 5px;
+            padding: 10px 10px;
+            font-size: 1em;
+            cursor: pointer;
+            max-width: 100px;
+            color: rgb(170, 220, 254);
+            text-align: left;
+        }
       </style>
        
 </head>
@@ -88,14 +104,17 @@
     <div id ="commandpanel" class="Commandpanel">
         <div class="form-container" style="padding-top: 10%;">
             <div class="form-row">
-                <label for="id2">id: </label> 
-                <input type="number" id="id2" name="id2" placeholder="Enter id">
-                <button id="updateChart" class="button4">Load Chart</button>
+                
+                <button id="GetChart" class="button4" pys-onClick="QRFetch" >Get QR</button>
+                <button id="updateChart" class="button4">Load|Chart</button>
+                <button id="updateChart" class="button4">./Help</button>
             </div>
             <div class="form-row">
+                <label for="id2">id: </label> 
+                <input type="number" id="id2" name="id2" placeholder="Enter id">
                 <label for="Gender">sex: </label>
                 <input type="text" id="gender" name="gender" placeholder="Enter Gender">
-                <button id="GetChart" class="button4" pys-onClick="QRFetch" >Get QR</button>
+              
             </div>
             <div class="form-row">
                 <label for="dob2">Date of Birth:</label>
@@ -174,7 +193,8 @@
         </div>
         <div class="mid-content">
             <div class="upper-div">
-                <label class="mainoutput"> Hello there this is daiva how can i help u i am going to tell u how good is your career and what path u will choose  </label>  
+                <div style="display: block;max-width: 100%;height: 50px;"></div>
+                <label class="mainoutput"> Hello There , Future Instance Generator is under Developement, Stay tuned ! </label>  
                 <img class="adhyayan" src="https://i.ibb.co/n7K4wB6/border.png" alt="Adhyayan Image">
                 <img class="border1"id="bottom-container" src="https://i.ibb.co/cg4Pwtf/Chart.png" alt="Chart"> 
               
@@ -199,8 +219,8 @@
                
                 <div id="qr-reader"></div>
                 <label class="result" id="result">Scan a QR code to see the result here</label>
-                <button class="button" id="start-btn">Start Scanner</button>
-                <button class="button" id="stop-btn">Stop Scanner</button>
+                <button class="button" id="Mychart-btn">Scan My Chart</button>
+                <button class="button" id="Milan-btn">Match Chart</button>
                 
                 <script>
                     let html5QrCode;
@@ -208,11 +228,84 @@
                     function onScanSuccess(qrCodeMessage) {
                         // Handle the result here
                         document.getElementById('result').innerText = `${qrCodeMessage}`;
+                        stopScanner()
+                        const laxmi_chautisa = [
+                            [16, 9, 4, 5],
+                            [3, 6, 14, 10],
+                            [13, 12, 1, 8],
+                            [2, 7, 14, 11]
+                        ];
+
+                        // Function to decrypt the text
+                        function decrypt(encrypted_text) {
+                            let decrypted_text = "";
+                            const n = laxmi_chautisa.length;
+
+                            for (let i = 0; i < encrypted_text.length; i++) {
+                                // Get the Unicode value of the encrypted character
+                                const unicode_val = encrypted_text.charCodeAt(i);
+
+                                // Get the position in the magic square (row and column)
+                                const row = i % n;
+                                const col = i % n;
+
+                                // Reverse the shift using the magic square value
+                                const original_unicode = unicode_val - laxmi_chautisa[row][col];
+
+                                // Convert back to character and add to decrypted text
+                                decrypted_text += String.fromCharCode(original_unicode);
+                            }
+
+                            return decrypted_text;
+                        }
+
+                        // Get the result text from the DOM
+                        const encrypted_text = document.getElementById("result").innerText;
+                        const dcode = decrypt(encrypted_text);
+                        const wcode = dcode;
+
+                        // Split the decoded information
+                        const [imp, placements, degrees, id] = wcode.split('#');
+                        const [asc, moondeg] = imp.split('/');
+                        const [sunpl, moonpl, mercurypl, venuspl, marspl, saturnpl, jupiterpl, rahupl, ketupl] = placements.split('/');
+                        const [sundeg, mercurydeg, venusdeg, marsdeg, saturndeg, jupiterdeg, rahudeg, ketudeg] = degrees.split('/');
+
+                        // Assign values to respective elements
+                        document.getElementById('Sunnum').innerText = sunpl;
+                        document.getElementById('Moonnum').innerText = moonpl;
+                        document.getElementById('Mercurynum').innerText = mercurypl;
+                        document.getElementById('Venusnum').innerText = venuspl;
+                        document.getElementById('Marsnum').innerText = marspl;
+                        document.getElementById('Saturnnum').innerText = saturnpl;
+                        document.getElementById('Jupiternum').innerText = jupiterpl;
+                        document.getElementById('Rahunum').innerText = rahupl;
+                        document.getElementById('Ketunum').innerText = ketupl;
+                        document.getElementById('asc').innerText = asc;
+
+                        // Assign degree values to respective elements
+                        document.getElementById('Sundeg').innerText = sundeg;
+                        document.getElementById('Moondeg').innerText = moondeg+".0";
+                        document.getElementById('Mercurydeg').innerText = mercurydeg;
+                        document.getElementById('Venusdeg').innerText = venusdeg;
+                        document.getElementById('Marsdeg').innerText = marsdeg;
+                        document.getElementById('Saturndeg').innerText = saturndeg;
+                        document.getElementById('Jupiterdeg').innerText = jupiterdeg;
+                        document.getElementById('Rahudeg').innerText = rahudeg;
+                        document.getElementById('Ketudeg').innerText = ketudeg;
+                        document.getElementById('result').innerText = `Your Chart Has been Saved !`;
+
+                    }
+                    function onScanSuccess2(qrCodeMessage) {
+                        // Handle the result here
+                        document.getElementById('result').innerText = `${qrCodeMessage}`;
+                        stopScanner()
+
                     }
             
                     function onScanError(errorMessage) {
                         // Handle scan errors here
                         console.warn(`QR Code scan error: ${errorMessage}`);
+                       
                     }
             
                     function startScanner() {
@@ -235,7 +328,26 @@
                             console.error(`Failed to start scanning: ${err}`);
                         });
                     }
+                    function startScanner2() {
+                        if (typeof Html5Qrcode === 'undefined') {
+                            console.error('Html5Qrcode is not available');
+                            return;
+                        }
             
+                        html5QrCode = new Html5Qrcode("qr-reader");
+            
+                        html5QrCode.start(
+                            { facingMode: "environment" }, // Use the back camera
+                            {
+                                fps: 10,    // Optional, frames per second
+                                qrbox: 250  // Optional, width and height of the scanning box
+                            },
+                            onScanSuccess2,
+                            onScanError
+                        ).catch((err) => {
+                            console.error(`Failed to start scanning: ${err}`);
+                        });
+                    }
                     function stopScanner() {
                         if (html5QrCode) {
                             html5QrCode.stop().then(() => {
@@ -247,23 +359,25 @@
                     }
             
                     // Attach event listeners to the buttons
-                    document.getElementById('start-btn').addEventListener('click', startScanner);
-                    document.getElementById('stop-btn').addEventListener('click', stopScanner);
+                    document.getElementById('Mychart-btn').addEventListener('click', startScanner);
+                    document.getElementById('Milan-btn').addEventListener('click', startScanner2);
                 </script>
                 
             </div>
 
             <div class="lower-div">
-                <button class="button1" ID="Predictro"onclick ="Predict()">PREDICT</button> 
-                <button class="button1" id="Marriage" pys-onClick ="DECODE" >MILAN</button>
-                <button class="button1" id="Switcher" pys-onClick ="Switchchart">MYCHART</button>
+                <button class="button1" id="Marriage" pys-onClick ="DECODE" >DECODE</button>
+                <button class="button1" ID="Predictro" pys-onClick="Compato" onclick="playAudio3()" >MILAN</button> 
+                <audio id = "myAudio3" src="Classic dhol.mp3"  ></audio>
+                <button class="button1" id="Switcher" pys-onClick ="Switchchart">SWITCH</button>
+                <button class="button1" ID="Predictro" onclick ="Predict()">PREDICT</button> 
             </div>
         </div>
         <div class="right-content">
             <!-- Right content goes here -->
         </div>
     </section>
-
+  
     
   
     <py-script>
@@ -304,7 +418,7 @@
             Rahuch = Element('Rahudeg')
             Ketuch = Element('Ketudeg')
             sunch.write(document.getElementById("Sundeg2").innerText)
-            moonch.write(document.getElementById("Moondeg2").innerText)
+            moonch.write(document.getElementById("Moondeg2").innerText+".0")
             mercurych.write(document.getElementById("Mercurydeg2").innerText)
             venusch.write(document.getElementById("Venusdeg2").innerText)
             marsch.write(document.getElementById("Marsdeg2").innerText)
@@ -390,7 +504,16 @@
             rahude.write(rahudeg)
             ketude = Element('Ketudeg2')
             ketude.write(ketudeg)
+            Result = document.getElementById("result")
+            Result.innerText = "The Chart is Decoded now u can proceed for Milan"
             
     </py-script>
+    <py-script src="Milan.py">
+          
+    </py-script>
+    <py-script src="Ashtakoot.py">
+
+    </py-script>
+   
 </body>
 </html>
