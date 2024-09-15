@@ -673,7 +673,8 @@ def Compato(*arg,**kwargs):
         
         astakoot_milan_result = calculate_astakoot_milan(nakshatraname, nakshatranameofrecord,pada1,pada2,rashibychart,lagnar,moonplacebychart,moon_placement)
         astakoot_milan_result = int((int(astakoot_milan_result)/36) * 100 )
-        result.innerText=(f"Your Birth Nakshatra is {nakshatraname} and Person's is {nakshatranameofrecord} Compaitibility is: {astakoot_milan_result}%" )
+        guna = round((astakoot_milan_result/100)*36)
+        result.innerText=(f"The Nakshatras are {nakshatraname} {nakshatranameofrecord} respectively. Gunamilan is {guna}/36 and compaitibility is {astakoot_milan_result}%" )
         
 
      elif genderofchart == "Male":
@@ -686,7 +687,8 @@ def Compato(*arg,**kwargs):
         
         astakoot_milan_result = calculate_astakoot_milan( nakshatranameofrecord,nakshatraname,pada2,pada1,lagnar,rashibychart,moon_placement,moonplacebychart)
         astakoot_milan_result = int((int(astakoot_milan_result)/36) * 100 )
-        result.innerText=(f"Your Birth Nakshatra is {nakshatraname} and Person's {nakshatranameofrecord} Compaitibility is: {astakoot_milan_result}%" )
+        guna = round((astakoot_milan_result/100)*36)
+        result.innerText=(f"The Nakshatras are {nakshatraname} {nakshatranameofrecord} respectively. Gunamilan is {guna}/36 and compaitibility is {astakoot_milan_result}%" )
      else:
         recordnumber = username
         lagnar = int(ascendant)
@@ -697,7 +699,8 @@ def Compato(*arg,**kwargs):
         
         astakoot_milan_result = calculate_astakoot_milan( nakshatranameofrecord,nakshatraname,pada2,pada1,lagnar,rashibychart,moon_placement,moonplacebychart)
         astakoot_milan_result = int((int(astakoot_milan_result)/36) * 100 )
-        result.innerText= (f"Assign Gender please - Your Birth Nakshatra is {nakshatraname} and Person's {nakshatranameofrecord} Compaitibility is: {astakoot_milan_result}%" )
+        guna = round((astakoot_milan_result/100)*36)
+        result.innerText=(f"The Nakshatras are {nakshatraname} {nakshatranameofrecord} respectively. Gunamilan is {guna}/36 and compaitibility is {astakoot_milan_result}%" )
 
            
   
