@@ -12,11 +12,23 @@ const result = document.getElementById("Report");
 
 const lagnan = document.getElementById("asc");
 
-
+//Audio segment
+function playAudio() {
+    var audio = document.getElementById("myAudio");
+    audio.play();
+  }
+function playAudio2() {
+    var audio = document.getElementById("myAudio2");
+audio.play();
+}
+function playAudio3(){
+    var audio = document.getElementById("myAudio3");
+    audio.play();
+}
 
 
 function Predict()
-{
+{playAudio()
     var relatedto = "Unknown";
     var lagnalord = ""
     if(lagnan.innerText == "1"|| lagnan.innerText == "8")
@@ -514,16 +526,3 @@ document.getElementById('pbutton').addEventListener('click', function() {
     // Toggle the state
     isTranslated = !isTranslated;
 });
-//Audio segment
-function playAudio() {
-    var audio = document.getElementById("myAudio");
-    audio.play();
-  }
-function playAudio2() {
-    var audio = document.getElementById("myAudio2");
-audio.play();
-}
-function playAudio3(){
-    var audio = document.getElementById("myAudio3");
-    audio.play();
-}
