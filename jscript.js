@@ -520,6 +520,10 @@ function playAudio() {
     audio.play();
   }
 function playAudio2() {
-var audio = document.getElementById("myAudio2");
+    var audio = document.getElementById("myAudio2");
 audio.play();
+}
+function playAudio3(){
+    var audio = document.getElementById("myAudio3");
+    audio.play();
 }
