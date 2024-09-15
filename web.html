@@ -106,7 +106,21 @@
             <div class="form-row">
                 
                 <button id="GetChart" class="button4" pys-onClick="QRFetch" >Get QR</button>
-                <button id="updateChart" class="button4">Load|Chart</button>
+                <input  type="file" id="fileInput" accept="image/*" class="button4" ></input>
+                <script>
+                    document.getElementById('fileInput').addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        const reader = new FileReader();
+            
+                        reader.onload = function(e) {
+                            document.getElementById('qrImage').src = e.target.result;
+                        };
+            
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                </script>
                 <button id="updateChart" class="button4">./Help</button>
             </div>
             <div class="form-row">
@@ -152,7 +166,7 @@
             <div class="upper-div">
                 <label class="titlemain"> D.A.I.V.A </label>
                 <a href="#daiva-container">
-                    <img class="chakra" src="https://i.ibb.co/HdxgJzQ/Swastikad.png" onclick="playAudio()" >
+                    <img class="chakra" src="https://i.ibb.co/HdxgJzQ/Swastikad.png" >
                     <audio id = "myAudio" src="fourbars.mp3"  ></audio>
                 </a>
             
@@ -215,7 +229,7 @@
         </div>
         <div class="mid-content">
             <div class="upper-div">
-                <img class="QR" src="https://i.ibb.co/WnnT992/border2.png">
+                <img id="qrImage" class="QR" src="https://i.ibb.co/WnnT992/border2.png">
                
                 <div id="qr-reader"></div>
                 <label class="result" id="result">Scan a QR code to see the result here</label>
@@ -370,7 +384,7 @@
                 <button class="button1" ID="Predictro" pys-onClick="Compato" onclick="playAudio3()" >MILAN</button> 
                 <audio id = "myAudio3" src="Classic dhol.mp3"  ></audio>
                 <button class="button1" id="Switcher" pys-onClick ="Switchchart">SWITCH</button>
-                <button class="button1" ID="Predictro" onclick ="Predict()">PREDICT</button> 
+                <a href="#daiva-container"><button  class="button1" ID="Predictro" onclick ="Predict()">PREDICT</button> </a>
             </div>
         </div>
         <div class="right-content">
