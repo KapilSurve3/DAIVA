@@ -11,7 +11,24 @@ const Ketuln = document.getElementById("Ketunum");
 const result = document.getElementById("Report");
 
 const lagnan = document.getElementById("asc");
-
+//ANOTHER HREF FOR CHART
+function backtochart(href) {
+    setTimeout(function() {
+    playAudio()
+    changePositions()
+        window.location.href = href;
+    }, 3000); // 3000 milliseconds = 3 seconds
+    
+    
+}
+//delay href
+function delayNavigation(href) {
+    playAudio4()
+    setTimeout(function() {
+        window.location.href = href;
+    }, 2000); // 3000 milliseconds = 3 seconds
+    
+}
 //Audio segment
 function playAudio() {
     var audio = document.getElementById("myAudio");
@@ -23,6 +40,10 @@ audio.play();
 }
 function playAudio3(){
     var audio = document.getElementById("myAudio3");
+    audio.play();
+}
+function playAudio4(){
+    var audio = document.getElementById("myAudio4");
     audio.play();
 }
 
@@ -496,8 +517,8 @@ if(lagnan.innerText == "1")
     result.innerText = result.innerText +"This person will have their major lookout for "+ aim +"\n Apart from this the person has "+ keywordrahu;
     result.innerText = result.innerText + "\n\n\n *The Marriage and Spouse Predictions*:\n\n"
     result.innerText = result.innerText + "The Native's love life would be: "+partner;
-    result.innerText = result.innerText + "\n\n *Benefic Yog occuring in your chart are *\n:"+goodyog;
-    result.innerText = result.innerText + "\n *Malefic Yog occuring in your chart are *\n:"+badyog;
+    result.innerText = result.innerText + "\n\n *Benefic Yog occuring in your chart are *\n:";
+    result.innerText = result.innerText + "\n *Malefic Yog occuring in your chart are *\n:";
 }
 
 //tHIS PART IS Translation
@@ -526,3 +547,105 @@ document.getElementById('pbutton').addEventListener('click', function() {
     // Toggle the state
     isTranslated = !isTranslated;
 });
+
+function changePositions() {
+    // Extract the house numbers for all planets
+    const sunHouse = parseInt(document.getElementById('Sunnum').textContent);
+    const moonHouse = parseInt(document.getElementById('Moonnum').textContent);
+    const mercuryHouse = parseInt(document.getElementById('Mercurynum').textContent);
+    const venusHouse = parseInt(document.getElementById('Venusnum').textContent);
+    const marsHouse = parseInt(document.getElementById('Marsnum').textContent);
+    const saturnHouse = parseInt(document.getElementById('Saturnnum').textContent);
+    const jupiterHouse = parseInt(document.getElementById('Jupiternum').textContent);
+    const rahuHouse = parseInt(document.getElementById('Rahunum').textContent);
+    const ketuHouse = parseInt(document.getElementById('Ketunum').textContent);
+
+    // Define a basic mapping for adjusting positions based on house numbers
+    function adjustPosition(planet, houseNum) {
+        const planetElement = document.getElementById(planet);
+        planetElement.style.visibility = "Visible";
+        
+        switch (houseNum) {
+        case 1:
+            // House 1: Top-center
+            planetElement.style.left = "50%";
+            planetElement.style.top = "30%";
+            break;
+        case 2:
+            // House 2: Top-left
+            planetElement.style.left = "35%";
+            planetElement.style.top = "20%";
+            break;
+        case 3:
+            // House 3: Left-center
+            planetElement.style.left = "20%";
+            planetElement.style.top = "30%";
+            break;
+        case 4:
+            // House 4: Bottom-left
+            planetElement.style.left = "35%";
+            planetElement.style.top = "50%";
+            break;
+        case 5:
+            // House 5: Bottom-center
+            planetElement.style.left = "20%";
+            planetElement.style.top = "70%";
+            break;
+        case 6:
+            // House 6: Bottom-right
+            planetElement.style.left = "35%";
+            planetElement.style.top = "80%";
+            break;
+        case 7:
+            // House 7: Right-center
+            planetElement.style.left = "50%";
+            planetElement.style.top = "70%";
+            break;
+        case 8:
+            // House 8: Top-right
+            planetElement.style.left = "70%";
+            planetElement.style.top = "80%";
+            break;
+        case 9:
+            // House 9: Right-top corner
+            planetElement.style.left = "80%";
+            planetElement.style.top = "70%";
+            break;
+        case 10:
+            // House 10: Top-center but higher
+            planetElement.style.left = "70%";
+            planetElement.style.top = "50%";
+            break;
+        case 11:
+            // House 11: Left-top corner
+            planetElement.style.left = "80%";
+            planetElement.style.top = "35%";
+            break;
+        case 12:
+            // House 12: Top-right, near House 1
+            planetElement.style.left = "70%";
+            planetElement.style.top = "20%";
+            break;
+        default:
+            // Default case: Centered
+            planetElement.style.left = "50%";
+            planetElement.style.top = "50%";
+            break;
+    }
+}
+           
+            // Add more cases for other houses as per your layout logic
+            
+    
+
+    // Adjust positions for each planet
+    adjustPosition('sun', sunHouse);
+    adjustPosition('moon', moonHouse);
+    adjustPosition('mercury', mercuryHouse);
+    adjustPosition('venus', venusHouse);
+    adjustPosition('mars', marsHouse);
+    adjustPosition('saturn', saturnHouse);
+    adjustPosition('jupiter', jupiterHouse);
+    adjustPosition('rahu', rahuHouse);
+    adjustPosition('ketu', ketuHouse);
+}
