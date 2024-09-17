@@ -10,6 +10,41 @@ body {
     display:block;
     z-index: 0;
 }
+.chat-container {
+    position: fixed;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 3;
+}
+
+#chat-box {
+    height: 400px;
+    overflow-y: scroll;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+#messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    background: #e1ffc7;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+.input-area {
+    display: flex;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
 
 .ombutton{
     display:block;
@@ -51,6 +86,47 @@ body {
     align-self: center;
     background-image: url();
 }
+.containerkundali {
+    position: relative;
+    width: 500px;  /* Adjust the size for larger screens */
+    height: 500px; /* Adjust the size for larger screens */
+    margin: 0 auto; /* Center the chart */
+}
+
+.kundali {
+    margin-top: 10%;
+    margin-left: 8%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 80%;
+}
+
+.planet {
+    visibility: hidden;
+    position: absolute;
+    width: 20%; /* 1:5 ratio relative to Kundali */
+    height: auto;
+    top: 40%; /* Center vertically */
+    left: 40%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the image */
+}
+
+/* Media query for smaller screens (mobile view) */
+@media (max-width: 600px) {
+    .containerkundali {
+        width: 300px;  /* Reduce size for mobile screens */
+        height: 300px;
+    }
+
+    .planet {
+        width: 18%;  /* Maintain a smaller size ratio */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
 .form-container {
     margin-top: 10px;
 }
@@ -68,6 +144,14 @@ body {
     
 }
 .button4 {
+    right: 20%;
+    display: block;
+    padding-right: 10%;
+    cursor: pointer;
+}
+button5 {
+    position: relative;
+    margin-left: 40%;
     right: 20%;
     display: block;
     padding-right: 10%;
@@ -467,14 +551,14 @@ body {
         display: block;
         position: relative;
         border-color: #a1ccff;
-        border-style:double;
+        border-style:solid;
         align-self: center;
         height:90%;
         width:90%;
         top: 0%;
         left: 10px;
-        background-color: #001c27;
-        color: #96e1ff ;
+        background-color: #004541;
+        color: #96fff8 ;
         background: linear-gradient(to left,rgba(1, 9, 48, 0.79),rgba(0, 9, 40, 0.658));
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
