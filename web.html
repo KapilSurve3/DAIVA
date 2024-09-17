@@ -10,6 +10,7 @@
     
     <script defer src="jscript.js" type="text/javascript"></script>
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
     <script defer src ="https://pyscript.net/alpha/pyscript.js"></script>
 
@@ -78,7 +79,7 @@
         }
         .button4{
             border-radius: 20%;
-            border-color: #caa851;
+            border-color: #dcb85c;
             border-style:inset;
             background-color: rgb(1, 1, 42);
             border-width: 5px;
@@ -89,6 +90,20 @@
             max-width: 100px;
             color: rgb(170, 220, 254);
             text-align: left;
+        }
+        .button5{
+            border-radius: 20%;
+            border-color: #fddb84;
+            border-style:inset;
+            background-color: rgb(1, 1, 42);
+            border-width: 5px;
+            margin: 5px;
+            padding: 10px 10px;
+            font-size: 1em;
+            cursor: pointer;
+            max-width: 100px;
+            color: rgb(170, 220, 254);
+            text-align: center;
         }
       </style>
        
@@ -106,21 +121,7 @@
             <div class="form-row">
                 
                 <button id="GetChart" class="button4" pys-onClick="QRFetch" >Get QR</button>
-                <input  type="file" id="fileInput" accept="image/*" class="button4" ></input>
-                <script>
-                    document.getElementById('fileInput').addEventListener('change', function(event) {
-                        const file = event.target.files[0];
-                        const reader = new FileReader();
-            
-                        reader.onload = function(e) {
-                            document.getElementById('qrImage').src = e.target.result;
-                        };
-            
-                        if (file) {
-                            reader.readAsDataURL(file);
-                        }
-                    });
-                </script>
+               
                 <button id="updateChart" class="button4">./Help</button>
             </div>
             <div class="form-row">
@@ -138,6 +139,7 @@
             
         </div>
     </div>
+    
     <section class="main-container" id="main-container"> 
       
         <div class="left-content" >
@@ -160,30 +162,17 @@
                 <label id = "Jupiterdeg2"class="data">1</label>
                 <label id = "Rahudeg2" class="data">0</label>
                 <label id = "Ketudeg2" class="data">1</label>
-            
-        </div>
-        <div class="mid-content">
-            <div class="upper-div">
-                <label class="titlemain"> D.A.I.V.A </label>
-                <a href="#daiva-container">
-                    <img class="chakra" src="https://i.ibb.co/HdxgJzQ/Swastikad.png" >
-                    <audio id = "myAudio" src="fourbars.mp3"  ></audio>
-                </a>
-            
-                
-            </div>
 
-            <div class="lower-div">
                 <label id ="asc" class="data">1</label>
-                <label id = "Sunnum"class="data">0</label>
-                <label id = "Moonnum"class="data">1</label>
-                <label id = "Mercurynum" class="data">0</label>
-                <label id = "Venusnum"class="data">1</label>
-                <label id = "Marsnum"class="data">0</label>
-                <label id = "Saturnnum"class="data">1</label>
-                <label id = "Jupiternum"class="data">0</label>
-                <label id = "Rahunum" class="data">0</label>
-                <label id = "Ketunum" class="data">1</label>
+                <label id = "Sunnum"class="data">2</label>
+                <label id = "Moonnum"class="data">3</label>
+                <label id = "Mercurynum" class="data">4</label>
+                <label id = "Venusnum"class="data">5</label>
+                <label id = "Marsnum"class="data">6</label>
+                <label id = "Saturnnum"class="data">7</label>
+                <label id = "Jupiternum"class="data">8</label>
+                <label id = "Rahunum" class="data">9</label>
+                <label id = "Ketunum" class="data">10</label>
                 <label id = "Sundeg"class="data">1</label>
                 <label id = "Moondeg"class="data">0</label>
                 <label id = "Mercurydeg" class="data">1</label>
@@ -194,7 +183,43 @@
                 <label id = "Rahudeg" class="data">0</label>
                 <label id = "Ketudeg" class="data">1</label>
             
+        </div>
+        <div class="mid-content">
+            <div class="upper-div">
+                <label class="titlemain"> D.A.I.V.A </label>
+                <a onclick="delayNavigation('#daiva-container')">
+                    <img class="chakra" src="https://i.ibb.co/HdxgJzQ/Swastikad.png"  onclick="changePositions()">
+                    <audio id = "myAudio4" src="Chakrarotating.mp3"  ></audio>
+                    <audio id = "myAudio" src="fourbars.mp3"  ></audio>
+                </a>
+            
+                
+            </div>
 
+            <div class="lower-div">
+           
+                <div class="containerkundali">
+                    <img src="https://i.ibb.co/cg4Pwtf/Chart.png" alt="Kundali" class="kundali">
+                    
+                    <!-- Planetary images -->
+                    <img src="https://i.ibb.co/qjMmMrS/Sun.png" alt="Sun" id="sun" class="planet">
+                    <img src="https://i.ibb.co/G94dVph/Moon.png" alt="Moon" id="moon" class="planet">
+                    <img src="https://i.ibb.co/5sRd3bX/Mercury.png" alt="Mercury" id="mercury" class="planet">
+                    <img src="https://i.ibb.co/vc4PBFV/Venus.png" alt="Venus" id="venus" class="planet">
+                    <img src="https://i.ibb.co/H4PFSTF/Mars.png" alt="Mars" id="mars" class="planet">
+                    <img src="https://i.ibb.co/rMtYjHs/Saturn.png" alt="Saturn" id="saturn" class="planet">
+                    <img src="https://i.ibb.co/fSd1dKJ/Jupiter.png" alt="Jupiter" id="jupiter" class="planet">
+                    <img src="https://i.ibb.co/425Gsnd/Rahu.png" alt="Rahu" id="rahu" class="planet">
+                    <img src="https://i.ibb.co/pZK0XNM/Ketu.png" alt="Ketu" id="ketu" class="planet">
+                    <!-- Add other planets similarly -->
+            
+                    <!-- Labels for planet houses (Example) -->
+                   
+                    <!-- Add more labels for other planets -->
+            
+                    
+                </div>
+                
             </div>
         </div>
         <div class="right-content">
@@ -206,8 +231,9 @@
             <!-- Left content goes here -->
         </div>
         <div class="mid-content">
+            
             <div class="upper-div">
-                <div style="display: block;max-width: 100%;height: 50px;"></div>
+               
                 <label class="mainoutput"> Hello There , Future Instance Generator is under Developement, Stay tuned ! </label>  
                 <img class="adhyayan" src="https://i.ibb.co/n7K4wB6/border.png" alt="Adhyayan Image">
                 <img class="border1"id="bottom-container" src="https://i.ibb.co/cg4Pwtf/Chart.png" alt="Chart"> 
@@ -230,7 +256,35 @@
         <div class="mid-content">
             <div class="upper-div">
                 <img id="qrImage" class="QR" src="https://i.ibb.co/WnnT992/border2.png">
-               
+                <input  type="file" id="fileInput" accept="image/*" class="button5" ></input>
+                <script>
+                   document.getElementById('fileInput').addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+                    const reader = new FileReader();
+
+                    if (!file) return;
+
+                    // Show the image in the img tag
+                    reader.onload = function(e) {
+                        document.getElementById('qrImage').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file); // Read the file to display the image
+
+                    // Initialize Html5QrcodeScanner for decoding
+                    const html5QrCode = new Html5Qrcode("qrImage");
+
+                    // Decode the QR code from the file object using scanFileV2
+                    html5QrCode.scanFileV2(file, true)
+                    .then(decodedResult => {
+                        // Display the decoded text
+                        document.getElementById('result').innerText = `${decodedResult.decodedText}`;
+                    })
+                    .catch(err => {
+                        console.error("QR code reading failed: ", err);
+                        document.getElementById('result').innerText = "No QR code found or invalid QR code!";
+                    });
+                });
+                </script>
                 <div id="qr-reader"></div>
                 <label class="result" id="result">Scan a QR code to see the result here</label>
                 <button class="button" id="Mychart-btn">Scan My Chart</button>
@@ -383,8 +437,8 @@
                 <button class="button1" id="Marriage" pys-onClick ="DECODE" >DECODE</button>
                 <button class="button1" ID="Predictro" pys-onClick="Compato" onclick="playAudio3()" >MILAN</button> 
                 <audio id = "myAudio3" src="Classic dhol.mp3"  ></audio>
-                <button class="button1" id="Switcher" pys-onClick ="Switchchart">SWITCH</button>
-                <a href="#daiva-container"><button  class="button1" ID="Predictro" onclick ="Predict()">PREDICT</button> </a>
+                <button class="button1"  id="Switcher" pys-onClick ="Switchchart" onclick="backtochart('#main-container')">MYCHART</button>
+                <a href="#daiva-container"><button  class="button1" id="Predictro" onclick ="Predict()">PREDICT</button> </a>
             </div>
         </div>
         <div class="right-content">
@@ -522,10 +576,13 @@
             Result.innerText = "The Chart is Decoded now u can proceed for Milan"
             
     </py-script>
-    <py-script src="Milan.py">
+    <!--<py-script src="Milan.py">
           
-    </py-script>
+    </py-script>-->
     <py-script src="Ashtakoot.py">
+
+    </py-script>
+    <py-script src="chatbot.py">
 
     </py-script>
    
