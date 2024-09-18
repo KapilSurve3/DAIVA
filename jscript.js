@@ -649,3 +649,64 @@ function changePositions() {
     adjustPosition('rahu', rahuHouse);
     adjustPosition('ketu', ketuHouse);
 }
+
+
+
+const slider = document.getElementById('slider');
+let isDragging = false;
+let startX = 0;
+
+slider.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.clientX;
+  slider.style.transition = 'none';
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (isDragging) {
+    const diffX = e.clientX - startX;
+    if (diffX >= 0 && diffX <= 150) {
+      slider.style.left = `${diffX}px`;
+    }
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  if (isDragging) {
+    isDragging = false;
+    slider.style.transition = 'left 0.3s ease';
+    if (parseInt(slider.style.left) < 125) {
+      slider.style.left = '-60%';  // Snap back to the left
+    } else {
+      slider.style.left = '80%';  // Snap to the right
+    }
+  }
+});
+
+// For mobile touch events
+slider.addEventListener('touchstart', (e) => {
+  isDragging = true;
+  startX = e.touches[0].clientX;
+  slider.style.transition = 'none';
+});
+
+document.addEventListener('touchmove', (e) => {
+  if (isDragging) {
+    const diffX = e.touches[0].clientX - startX;
+    if (diffX >= 0 && diffX <= 150) {
+      slider.style.left = `${diffX}px`;
+    }
+  }
+});
+
+document.addEventListener('touchend', () => {
+  if (isDragging) {
+    isDragging = false;
+    slider.style.transition = 'left 0.3s ease';
+    if (parseInt(slider.style.left) < 125) {
+      slider.style.left = '10%';  // Snap back to the left
+    } else {
+      slider.style.left = '-0%';  // Snap to the right
+    }
+  }
+});
