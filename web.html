@@ -84,20 +84,21 @@
             background-color: rgb(1, 1, 42);
             border-width: 5px;
             margin: 5px;
-            padding: 10px 10px;
+            padding: 5px 5px;
             font-size: 1em;
             cursor: pointer;
             max-width: 100px;
             color: rgb(170, 220, 254);
             text-align: left;
+            z-index: 1;
         }
         .button5{
             border-radius: 20%;
-            border-color: #fddb84;
+            border-color: #ffa85b;
             border-style:inset;
             background-color: rgb(1, 1, 42);
             border-width: 5px;
-            margin: 5px;
+            margin: 0px;
             padding: 10px 10px;
             font-size: 1em;
             cursor: pointer;
@@ -125,20 +126,23 @@
                 <button id="updateChart" class="button4">./Help</button>
             </div>
             <div class="form-row">
-                <label for="id2">id: </label> 
-                <input type="number" id="id2" name="id2" placeholder="Enter id">
-                <label for="Gender">sex: </label>
-                <input type="text" id="gender" name="gender" placeholder="Enter Gender">
+                
+                <input type="number" id="id2" name="id2" placeholder="Enter Id">
+                <input type="text" id="gender" name="gender" placeholder="Enter Sex">
               
             </div>
             <div class="form-row">
-                <label for="dob2">Date of Birth:</label>
+                
                 <input type="date" id="dob2" name="dob2">
             </div>
            
             
         </div>
+      
     </div>
+    <div id="slider" class="slider">
+        <div class="contento"></div>
+      </div>
     
     <section class="main-container" id="main-container"> 
       
@@ -187,6 +191,7 @@
         <div class="mid-content">
             <div class="upper-div">
                 <label class="titlemain"> D.A.I.V.A </label>
+                
                 <a onclick="delayNavigation('#daiva-container')">
                     <img class="chakra" src="https://i.ibb.co/HdxgJzQ/Swastikad.png"  onclick="changePositions()">
                     <audio id = "myAudio4" src="Chakrarotating.mp3"  ></audio>
@@ -235,6 +240,12 @@
             <div class="upper-div">
                
                 <label class="mainoutput"> Hello There , Future Instance Generator is under Developement, Stay tuned ! </label>  
+                <div class="form-row" style="position: relative; margin-left: 18%;" >
+                
+                    <button id="marriage" class="button5" >Marriage</button>
+                   
+                    <button id="careeras" class="button5">Career</button>
+                </div>
                 <img class="adhyayan" src="https://i.ibb.co/n7K4wB6/border.png" alt="Adhyayan Image">
                 <img class="border1"id="bottom-container" src="https://i.ibb.co/cg4Pwtf/Chart.png" alt="Chart"> 
               
