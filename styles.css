@@ -330,8 +330,7 @@ body {
     color: rgb(201, 245, 255);
     background-size: auto;
     text-shadow:rgb(240, 255, 255);
-    animation: animate 3s linear infinite;
-    -webkit-box-reflect: below 1px linear-gradient(transparent,#0004);
+   
     z-index: 0;
   
 }
@@ -600,7 +599,7 @@ body {
         top: 50%;
         animation: none;
         -webkit-box-reflect: none;
-        animation: animate 3s linear infinite;
+       
     }
     .mainoutput{
         display: block;
