@@ -532,7 +532,7 @@ document.getElementById('pbutton').addEventListener('click', function() {
 
     if (!isTranslated) {
         // Translate all elements by 30% on Y-axis
-        img.style.transform = 'translateY(-450%)';
+        img.style.transform = 'translateY(-480%)';
         button.style.transform = 'translateY(-450%)';
         panel.style.transform = 'translateY(-90%)';
         bottomFixed.style.transform = 'translateY(-340%)';
@@ -710,3 +710,40 @@ document.addEventListener('touchend', () => {
     }
   }
 });
+
+let chatvisi = true
+function chatopen() {
+    const pElement = document.getElementById('Chatscreen');
+    const logoment = document.getElementById('video');
+    if (chatvisi == false) {
+        pElement.style.visibility = "Hidden";
+        logoment.style.visibility = "Hidden";
+        chatvisi = true
+    } else {
+        pElement.style.visibility = "Visible";
+        logoment.style.visibility = "Visible";
+        logoment.src = "https://i.ibb.co/pWcrcnV/D-A-I-VA.png"
+        
+        chatvisi = false
+
+    }
+
+    
+}
+
+fetch('Information.txt')  // Replace with the correct file URL
+.then(response => {
+    if (response.ok) {
+        return response.text();  // Read the file content as text
+    }
+    throw new Error('File not found or server error');
+})
+.then(text => {
+    // Get the textarea element and set its value to the fetched content
+    document.getElementById('fileContent').value = text;
+})
+.catch(error => {
+    // If an error occurs during fetching, log the error
+    console.error('Error reading the file:', error);
+});
+
