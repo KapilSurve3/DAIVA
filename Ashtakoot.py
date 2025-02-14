@@ -1,7 +1,8 @@
 from js import document
 from js import window
-import pandas as pd
+
 from pyodide.http import open_url
+
 #main printing function
 result = document.getElementById('result')
 
@@ -630,7 +631,7 @@ def Compato(*arg,**kwargs):
 
           return Sal,Mah,nakshatraname,pada,Nlord,dashalist,kallist
      moondegbychart = (document.getElementById('Moondeg').innerText)
-     genderofchart = str(Element('gender').value)
+     genderofchart = str(document.getElementById('gender').value)
      rashibychart = int(document.getElementById('asc').innerText)
      moonplacebychart = int(document.getElementById('Moonnum').innerText)
      def rashifinder(rashibychart,moonplace):      
