@@ -402,20 +402,17 @@ body {
     transition: transform 0.3s ease; /* Smooth transition effect */
 }
 .mainoutput{
-    display: block;
-    overflow-wrap: anywhere;
+    display:block;
     position:relative;
     width: 200px;
-    height: 250px;
-    left: 30%;
-    top: -10%;
-    margin-top: 25%;
-    font-size: 20px;
-    color: rgb(201, 245, 255);
-    background-size: auto;
-
-    contain: content;
-    overflow-y: scroll;
+    height: 100px;
+    left: 10%;
+    border-radius: 20%;
+    border: #96e1ff;
+    border-style:hidden;
+    font-size: 18px;
+    color: rgb(11, 13, 51);
+    overflow-y:scroll;
     text-align: center;
 }
 .Report{
@@ -469,7 +466,7 @@ body {
         top: 0%;
     }
     .mainoutput{
-        font-size: medium;
+        font-size: small;
         position: relative;
         top: -10%;
         left: 18%;
@@ -604,12 +601,19 @@ body {
     .mainoutput{
         display: block;
         font-size: medium;
-        position: relative;
+        position: fixed;
         top: 0%;
         left: 18%;
-        margin-top: 45%;
-        width: 180px;
-        height: 100px;
+        margin-top: 6%;
+        width: 55%;
+        height: 3%;
+        text-align: center;
+        z-index: 1;
+        background-color: #169e97;
+        color: #a3fff9 ;
+        background: linear-gradient(to left,rgba(46, 51, 75, 0.79),rgba(49, 76, 175, 0.658));
+        backdrop-filter: blur(5px);
+
     }
     #qr-reader {
         width: 70%;
@@ -638,7 +642,7 @@ body {
         align-self: center;
         height:90%;
         width:90%;
-        top: 0%;
+        top: 2%;
         left: 10px;
         background-color: #004541;
         color: #96fff8 ;
