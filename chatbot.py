@@ -47,7 +47,7 @@ def Chatter(*arg, **kwargs):
     
     # Display the result in the element with id 'mainoutput'
     result = document.getElementById('mainoutput')
-    result.innerText = answer '''
+    result.innerText = answer 
 
 from js import document
 
@@ -125,3 +125,37 @@ def display_message(message, className):
     chat_screen.scrollTop = chat_screen.scrollHeight
 
 
+from js import document
+from js import window
+
+async function sendMessage() {
+    let userMessage = document.getElementById("userInput").value;
+    let response = await fetch("http://127.0.0.1:8000/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage })
+    });
+
+    let data = await response.json();
+    document.getElementById("chatbox").innerHTML += `<p><b>You:</b> ${userMessage}</p>`;
+    document.getElementById("chatbox").innerHTML += `<p><b>Bot:</b> ${data.reply}</p>`;
+
+# chatbot.py
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
+
+# Load the fine-tuned model
+model = AutoModelForCausalLM.from_pretrained("./my_chatbot_model")
+tokenizer = AutoTokenizer.from_pretrained("./my_chatbot_tokenizer")
+
+def generate_response(user_input):
+    inputs = tokenizer.encode(f"Q: {user_input} A:", return_tensors="pt")
+    outputs = model.generate(inputs, max_length=50, num_return_sequences=1)
+    response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    return response.split("A: ")[-1]
+
+# Example usage
+user_input = "What is your name?"
+response = generate_response(user_input)
+print(response)
+}'''
