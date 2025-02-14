@@ -5,24 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Layout</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.2.1/core.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
     <script defer src="jscript.js" type="text/javascript"></script>
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-    
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
-    <script defer src ="https://pyscript.net/alpha/pyscript.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
 
-    
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script> <!-- ONNX-->
+   <!-- <script src="https://cdn.jsdelivr.net/npm/@xenova/transformers@latest"></script>  transformer -->
+    <script type="module" src="https://pyscript.net/releases/2025.2.2/core.js"></script>
+
+</head>
     <py-env>
         - matplotlib
-        - pandas
         - pyodide.http
-       
-
-        
+  
     </py-env>
+    <py-config>
+        packages = ["pandas", "requests"]
+    </py-config>
     <style>
         body{
           background-size: cover;
@@ -144,7 +147,7 @@
             </div>
             <div class="form-row">
                 <input type="text" id="chartcode" style="border-color: rgb(3, 6, 34); width: 50%; background-color: rgb(103, 199, 251); color: rgb(15, 1, 32); display: block;margin-top: 10px; margin-left: 10px; padding: 5px;"></input>
-                <input type="button" style="width: 30%; margin-right: 10px;margin-top: 10px ;height: 30px; background-color: rgb(6, 6, 46); border-color: rgb(134, 195, 255); color: rgb(138, 212, 255); display: block;" pys-onClick="Chatter"  id="yehwala" value="Chat"></input>
+                <input type="button" style="width: 30%; margin-right: 10px;margin-top: 10px ;height: 30px; background-color: rgb(6, 6, 46); border-color: rgb(134, 195, 255); color: rgb(138, 212, 255); display: block;" onclick="sendMessage()"  id="yehwala" value="Query"></input>
                 
             </div>
             <div class="form-row">
@@ -162,9 +165,11 @@
     </a>
     <div id="slider" class="slider">
         <img src="/Images/Uparrow.png" id="video" width="75%" style="visibility: hidden;left:15%;top: 20% ;position:fixed; z-index: 1;" autoplay loop muted></img>
+     
         <div style="color:gold ;" id="Chatscreen" class="slider2">
             <div class="chat-container">
                 <div id="chat-screen" class="chat-screen">
+                    <div class="chat-message bot-message">Namaskar, I am DAIVA i can answer your questions </div>
                     <!-- Chat messages will appear here -->
                 </div>
              
@@ -177,7 +182,7 @@
     <section class="main-container" id="main-container"> 
       
         <div class="left-content" >
-            <label id ="asc2" class="data">1</label>
+                <label id ="asc2" class="data">1</label>
                 <label id = "Sunnum2"class="data">0</label>
                 <label id = "Moonnum2"class="data">1</label>
                 <label id = "Mercurynum2" class="data">0</label>
@@ -228,7 +233,7 @@
 
             <div class="lower-div">
               
-                <a onclick="delayNavigation('#daiva-container')">
+                <a onclick="delayNavigation('#scan-container')">
                     <img class="chakra" src="https://i.ibb.co/HdxgJzQ/Swastikad.png"  onclick="changePositions()">
                     <audio id = "myAudio4" src="Chakrarotating.mp3"  ></audio>
                     <audio id = "myAudio" src="fourbars.mp3"  ></audio>
@@ -243,140 +248,6 @@
         </div>
     </section>
     
-    <section class="daiva-container" id="daiva-container">
-        <div class="left-content">
-            <!-- Left content goes here -->
-        </div>
-        <div class="mid-content">
-            
-            <div class="upper-div">
-               
-                <label class="mainoutput" id="mainoutput" > Hello There , Future Instance Generator is under Developement, Stay tuned ! </label>  
-                <div class="form-row" style="position: relative; margin-left: 18%;" >
-                
-                    <button id="marriage" class="button5" >Marriage</button>
-                   
-                    <button id="careeras" class="button5">Career</button>
-                </div>
-                <img class="adhyayan" src="https://i.ibb.co/n7K4wB6/border.png" alt="Adhyayan Image">
-                
-              
-            </div>
-
-            <div class="lower-div">
-                <label class="Report" id="Report" ></label>
-                
-            </div>
-        </div>
-        <div class="right-content">
-            <!-- Right content goes here -->
-        </div>
-    </section>
-    <section class="daiva-container2" id="daiva-container2">
-        <div class="left-content">
-            <!-- Left content goes here -->
-        </div>
-        <div class="mid-content">
-            
-            <div class="upper-div">
-                <div class="containerkundali">
-                    <img src="https://i.ibb.co/cg4Pwtf/Chart.png" alt="Kundali" class="kundali">
-                    
-                    <!-- Planetary images -->
-                    <img src="https://i.ibb.co/qjMmMrS/Sun.png" alt="Sun" id="sun" class="planet">
-                    <img src="https://i.ibb.co/G94dVph/Moon.png" alt="Moon" id="moon" class="planet">
-                    <img src="https://i.ibb.co/5sRd3bX/Mercury.png" alt="Mercury" id="mercury" class="planet">
-                    <img src="https://i.ibb.co/vc4PBFV/Venus.png" alt="Venus" id="venus" class="planet">
-                    <img src="https://i.ibb.co/H4PFSTF/Mars.png" alt="Mars" id="mars" class="planet">
-                    <img src="https://i.ibb.co/rMtYjHs/Saturn.png" alt="Saturn" id="saturn" class="planet">
-                    <img src="https://i.ibb.co/fSd1dKJ/Jupiter.png" alt="Jupiter" id="jupiter" class="planet">
-                    <img src="https://i.ibb.co/425Gsnd/Rahu.png" alt="Rahu" id="rahu" class="planet">
-                    <img src="https://i.ibb.co/pZK0XNM/Ketu.png" alt="Ketu" id="ketu" class="planet">
-                    <!-- Add other planets similarly -->
-            
-                    <!-- Labels for planet houses (Example) -->
-                   
-                    <!-- Add more labels for other planets -->
-            
-                    
-                </div>
-
-            
-                <label style="font-size: small; color: rgb(167, 209, 255); display: block; margin: 10px auto;">Enter your Ascendant</label>
-                <input type="number" id="Asc" name="Asc" style="width: 90%; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto; padding: 5px;"></input>
-               
-            </div>
-
-            <div class="lower-div">
-                <form class="form" action="phpaction.php" method="post" style="padding: 10px; max-width: 100%; box-sizing: border-box;">
-                    <label style="font-size: large; color: rgb(167, 252, 255); display: block; text-align: center; margin-bottom: 10px;">Enter the details</label>
-                
-                   
-                
-                   
-                    <!-- Planets Section -->
-                    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-                        <div style="margin: 5px;">
-                            <img src="https://i.ibb.co/qjMmMrS/Sun.png" style="height: 40px; width: 40px; display: block; margin: 0 auto;">
-                            <input type="number" id="Sunplace" name="Sunplace" placeholder="house"  style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-
-                            <input type="number" step="0.01" id="Sunlab" name="Sunlab" placeholder="degrees" style="border: #82a4db;border-width: 1px;border-style:solid ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                        </div>
-                
-                        <div style="margin: 5px;">
-                            <img src="https://i.ibb.co/G94dVph/Moon.png" style="height: 40px; width: 40px; display: block; margin: 0 auto;">
-                            <input type="number" id="Moonplace" name="Moonplace"placeholder="house" style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                            <input type="number" step="0.01" id="Moonlab" name="Moonlab"placeholder="degrees" style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                        </div>
-                
-                        <!-- Continue for other planets similarly -->
-                        <div style="margin: 5px;">
-                            <img src="https://i.ibb.co/5sRd3bX/Mercury.png" style="height: 40px; width: 40px; display: block; margin: 0 auto;">
-                            <input type="number" id="Mercuryplace" name="Mercuryplace"placeholder="house" style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                            <input type="number" step="0.01" id="Mercurylab" name="Mercurylab"placeholder="degrees" style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                        </div>
-
-                         <!-- Venus -->
-                        <div style="margin: 5px;">
-                            <img src="https://i.ibb.co/vc4PBFV/Venus.png" style="height: 40px; width: 40px; display: block; margin: 0 auto;">
-                            <input type="number" id="Venusplace" name="Venusplace"placeholder="house"  style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                            <input type="number" step="0.01" id="Venuslab" name="Venuslab"placeholder="degrees" style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                        </div>
-
-                        <!-- Mars -->
-                        <div style="margin: 5px;">
-                            <img src="https://i.ibb.co/H4PFSTF/Mars.png" style="height: 40px; width: 40px; display: block; margin: 0 auto;">
-                            <input type="number" id="Marsplace" name="Marsplace"placeholder="house"  style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                            <input type="number" step="0.01" id="Marslab" name="Marslab"placeholder="degrees" style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                        </div>
-
-                        <!-- Jupiter -->
-                        <div style="margin: 5px;">
-                            <img src="https://i.ibb.co/fSd1dKJ/Jupiter.png" style="height: 40px; width: 40px; display: block; margin: 0 auto;">
-                            <input type="number" id="Jupiterplace" name="Jupiterplace"placeholder="house"  style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                            <input type="number" step="0.01" id="Jupiterlab" name="Jupiterlab"placeholder="degrees" style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color:  rgb(114, 182, 255); display: block; margin: 5px auto;"></input>  
-                        </div>
-
-                        <div style="margin: 5px;">
-                            <img src="https://i.ibb.co/rMtYjHs/Saturn.png" style="height: 40px; width: 40px; display: block; margin: 0 auto;">
-                            <input type="number" id="Saturnplace" name="Saturnplace"placeholder="house"  style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                            <input type="number" step="0.01" id="Saturnlab" name="Saturnlab"placeholder="degrees" style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                        </div>
-
-                        <div style="margin: 5px;">
-                            <img src="https://i.ibb.co/425Gsnd/Rahu.png" style="height: 40px; width: 40px; display: block; margin: 0 auto;">
-                            <input type="number" id="Rahupplace" name="Rahupplace" placeholder="house" style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                            <input type="number" step="0.01" id="Rahulab" name="Rahulab" placeholder="degrees"style="border: #82a4db;border-width: 1px;border-style:solid  ;width: 50px; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto;"></input>
-                        </div>
-                </form>
-                
-            </div>
-        </div>
-        <div class="right-content">
-            <!-- Right content goes here -->
-        </div>
-    </section>
-
     <section class="scan-container" id="scan-container">
         <div class="left-content">
             <!-- Left content goes here -->
@@ -411,7 +282,7 @@
                         console.error("QR code reading failed: ", err);
                         document.getElementById('result').innerText = "No QR code found or invalid QR code!";
                     });
-                });
+                    });
                 </script>
                 <div id="qr-reader"></div>
                 <label class="result" id="result">Scan a QR code to see the result here</label>
@@ -467,7 +338,8 @@
                         const [sundeg, mercurydeg, venusdeg, marsdeg, saturndeg, jupiterdeg, rahudeg, ketudeg] = degrees.split('/');
 
                         // Assign values to respective elements
-                        document.getElementById('Sunnum').innerText = sunpl;
+                      // Assign values to respective elements
+                      document.getElementById('Sunnum').innerText = sunpl;
                         document.getElementById('Moonnum').innerText = moonpl;
                         document.getElementById('Mercurynum').innerText = mercurypl;
                         document.getElementById('Venusnum').innerText = venuspl;
@@ -495,7 +367,71 @@
                         // Handle the result here
                         document.getElementById('result').innerText = `${qrCodeMessage}`;
                         stopScanner()
+                        const laxmi_chautisa = [
+                            [16, 9, 4, 5],
+                            [3, 6, 14, 10],
+                            [13, 12, 1, 8],
+                            [2, 7, 14, 11]
+                        ];
 
+                        // Function to decrypt the text
+                        function decrypt(encrypted_text) {
+                            let decrypted_text = "";
+                            const n = laxmi_chautisa.length;
+
+                            for (let i = 0; i < encrypted_text.length; i++) {
+                                // Get the Unicode value of the encrypted character
+                                const unicode_val = encrypted_text.charCodeAt(i);
+
+                                // Get the position in the magic square (row and column)
+                                const row = i % n;
+                                const col = i % n;
+
+                                // Reverse the shift using the magic square value
+                                const original_unicode = unicode_val - laxmi_chautisa[row][col];
+
+                                // Convert back to character and add to decrypted text
+                                decrypted_text += String.fromCharCode(original_unicode);
+                            }
+
+                            return decrypted_text;
+                        }
+
+                        // Get the result text from the DOM
+                        const encrypted_text = document.getElementById("result").innerText;
+                        const dcode = decrypt(encrypted_text);
+                        const wcode = dcode;
+
+                        // Split the decoded information
+                        const [imp, placements, degrees, id] = wcode.split('#');
+                        const [asc, moondeg] = imp.split('/');
+                        const [sunpl, moonpl, mercurypl, venuspl, marspl, saturnpl, jupiterpl, rahupl, ketupl] = placements.split('/');
+                        const [sundeg, mercurydeg, venusdeg, marsdeg, saturndeg, jupiterdeg, rahudeg, ketudeg] = degrees.split('/');
+
+                     
+                        
+                        document.getElementById('Sunnum2').innerText = sunpl;
+                        document.getElementById('Moonnum2').innerText = moonpl;
+                        document.getElementById('Mercurynum2').innerText = mercurypl;
+                        document.getElementById('Venusnum2').innerText = venuspl;
+                        document.getElementById('Marsnum2').innerText = marspl;
+                        document.getElementById('Saturnnum2').innerText = saturnpl;
+                        document.getElementById('Jupiternum2').innerText = jupiterpl;
+                        document.getElementById('Rahunum2').innerText = rahupl;
+                        document.getElementById('Ketunum2').innerText = ketupl;
+                        document.getElementById('asc2').innerText = asc;
+
+                        // Assign degree values to respective elements
+                        document.getElementById('Sundeg2').innerText = sundeg;
+                        document.getElementById('Moondeg2').innerText = moondeg+".0";
+                        document.getElementById('Mercurydeg2').innerText = mercurydeg;
+                        document.getElementById('Venusdeg2').innerText = venusdeg;
+                        document.getElementById('Marsdeg2').innerText = marsdeg;
+                        document.getElementById('Saturndeg2').innerText = saturndeg;
+                        document.getElementById('Jupiterdeg2').innerText = jupiterdeg;
+                        document.getElementById('Rahudeg2').innerText = rahudeg;
+                        document.getElementById('Ketudeg2').innerText = ketudeg;
+                        document.getElementById('result').innerText = `Your Chart Has been Saved !`;
                     }
             
                     function onScanError(errorMessage) {
@@ -562,11 +498,11 @@
             </div>
 
             <div class="lower-div">
-                <button class="button1" id="Marriage" pys-onClick ="DECODE" >DECODE</button>
-                <button class="button1" ID="Predictro" pys-onClick="Compato" onclick="playAudio3()" >MILAN</button> 
-                <audio id = "myAudio3" src="Classic dhol.mp3"  ></audio>
                 <button class="button1"  id="Switcher" pys-onClick ="Switchchart" onclick="backtochart('#daiva-container2')">MYCHART</button>
-                <a href="#daiva-container"><button  class="button1" id="Predictro" onclick ="Predict()">PREDICT</button> </a>
+                
+                <button class="button1" ID="Predictro" py-click="Compato" onclick="playAudio3()" >MILAN</button> 
+                <audio id = "myAudio3" src="Classic dhol.mp3"  ></audio>
+                
             </div>
         </div>
         <div class="right-content">
@@ -574,12 +510,95 @@
         </div>
     </section>
   
+
+
+
+
+
+
+
+
+    <section class="daiva-container" id="daiva-container">
+        <div class="left-content">
+            <!-- Left content goes here -->
+        </div>
+        <div class="mid-content">
+            
+            <div class="upper-div">
+              
+                <label class="mainoutput" id="mainoutput" > Click on the Chakra !</label>  
+                <label class="Report" id="Report" ></label>
+                <!--<img class="adhyayan" src="https://i.ibb.co/n7K4wB6/border.png" alt="Adhyayan Image" >-->
+           
+              
+            </div>
+
+        
+        </div>
+        <div class="right-content">
+            <!-- Right content goes here -->
+        </div>
+    </section>
+    <section class="daiva-container2" id="daiva-container2">
+        <div class="left-content">
+            <!-- Left content goes here -->
+        </div>
+        <div class="mid-content">
+            
+            <div class="upper-div">
+                <div class="containerkundali">
+                    <img src="https://i.ibb.co/cg4Pwtf/Chart.png" alt="Kundali" class="kundali">
+                    
+                    <!-- Planetary images -->
+                    <img src="https://i.ibb.co/qjMmMrS/Sun.png" alt="Sun" id="sun" class="planet">
+                    <img src="https://i.ibb.co/G94dVph/Moon.png" alt="Moon" id="moon" class="planet">
+                    <img src="https://i.ibb.co/5sRd3bX/Mercury.png" alt="Mercury" id="mercury" class="planet">
+                    <img src="https://i.ibb.co/vc4PBFV/Venus.png" alt="Venus" id="venus" class="planet">
+                    <img src="https://i.ibb.co/H4PFSTF/Mars.png" alt="Mars" id="mars" class="planet">
+                    <img src="https://i.ibb.co/rMtYjHs/Saturn.png" alt="Saturn" id="saturn" class="planet">
+                    <img src="https://i.ibb.co/fSd1dKJ/Jupiter.png" alt="Jupiter" id="jupiter" class="planet">
+                    <img src="https://i.ibb.co/425Gsnd/Rahu.png" alt="Rahu" id="rahu" class="planet">
+                    <img src="https://i.ibb.co/pZK0XNM/Ketu.png" alt="Ketu" id="ketu" class="planet">
+                    <!-- Add other planets similarly -->
+            
+                    <!-- Labels for planet houses (Example) -->
+                   
+                    <!-- Add more labels for other planets -->
+            
+                    
+                </div>
+
+            
+                <label style="font-size: small; color: rgb(167, 209, 255); display: block; margin: 10px auto;">Enter your Ascendant</label>
+                <input type="number" id="Asc" name="Asc" style="width: 90%; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto; padding: 5px;"></input>
+               
+            </div>
+
+            <div class="lower-div">
+            
+
+                <!-- Area to Display Chart -->
+                
+                <a href="#daiva-container"><button  class="button1" id="Predictro" onclick ="Predict()">PREDICT</button> </a>
+                <a href="#daiva-container"></a><button class="button1" id="Marriage" py-click="DECODE" >SCANNER</button></a>
+                <div style="contain: content; overflow-wrap: anywhere;color: #a1ccff;display: none;" id="output"></div>
+                
+            
+            </div>
+        </div>
+        <div class="right-content">
+            <!-- Right content goes here -->
+          
+        </div>
+    </section>
+
+  
     
   
     <py-script>
         from js import document
         from js import window
-        import pandas as pd
+        
         from pyodide.http import open_url
         
         def Switchchart(*arg,**kwargs):
@@ -627,81 +646,14 @@
             window.open("https://jmo1ozciqh2bfonxzrhgzw.on.drv.tw/www.DAIVAQR.com/", "_blank")
 
             
-        def DECODE(*arg,**kwargs):
-            laxmi_chautisa = [
-            [16, 9, 4, 5],
-            [3, 6, 14, 10],
-            [13, 12, 1, 8],
-            [2, 7, 14, 11]
-            ]
-            # Function to decrypt the text
-            def decrypt(encrypted_text):
-                decrypted_text = ""
-                n = len(laxmi_chautisa)
-                
-                for i, char in enumerate(encrypted_text):
-                    # Get the Unicode value of the encrypted character
-                    unicode_val = ord(char)
-                    
-                    # Get the position in the magic square (row and column)
-                    row = i % n
-                    col = i % n
-                    
-                    # Reverse the shift using the magic square value
-                    original_unicode = unicode_val - laxmi_chautisa[row][col]
-                    
-                    # Convert back to character and add to decrypted text
-                    decrypted_text += chr(original_unicode)
-                
-                return decrypted_text
+        from pyscript import display
+        import pandas as pd
+        def DECODE(*args, **kwargs):
+  
+            # Display DataFrame
+            display(df, target="output")
+            display("Hello", target="result")
 
-            dcode = decrypt(document.getElementById("result").innerText)
-            wcode = dcode
-            imp,placements,degrees,id = wcode.split('#')
-            asc,moondeg = imp.split("/")
-            sunpl,moonpl,mercurypl,venuspl,marspl,saturnpl,jupiterpl,rahupl,ketupl = placements.split('/')
-            sundeg,mercurydeg,venusdeg,marsdeg,saturndeg,jupiterdeg,rahudeg,ketudeg = degrees.split('/')
-            sunplin= Element('Sunnum2')
-            sunplin.write(sunpl)
-            moonplin= Element('Moonnum2')
-            moonplin.write(moonpl) 
-            mercuryplin = Element('Mercurynum2')
-            mercuryplin.write(mercurypl)
-            venusplin = Element('Venusnum2')
-            venusplin.write(venuspl)
-            marsplin = Element('Marsnum2')
-            marsplin.write(marspl)
-            saturnplin = Element('Saturnnum2')
-            saturnplin.write(saturnpl)
-            jupiterplin = Element('Jupiternum2')
-            jupiterplin.write(jupiterpl)
-            rahuplin = Element('Rahunum2')
-            rahuplin.write(rahupl)
-            ketuplin = Element('Ketunum2')
-            ketuplin.write(ketupl)
-            asci = Element('asc2')
-            asci.write(asc)
-
-            sunde= Element('Sundeg2')  
-            sunde.write(sundeg)
-            moonde= Element('Moondeg2')
-            moonde.write(moondeg)  
-            mercuryde = Element('Mercurydeg2')
-            mercuryde.write(mercurydeg)
-            venusde = Element('Venusdeg2')
-            venusde.write(venusdeg)
-            marsde = Element('Marsdeg2')
-            marsde.write(marsdeg)
-            saturnde = Element('Saturndeg2')
-            saturnde.write(saturndeg)
-            jupiterde = Element('Jupiterdeg2')
-            jupiterde.write(jupiterdeg)
-            rahude = Element('Rahudeg2')
-            rahude.write(rahudeg)
-            ketude = Element('Ketudeg2')
-            ketude.write(ketudeg)
-            Result = document.getElementById("result")
-            Result.innerText = "The Chart is Decoded now u can proceed for Milan"
             
     </py-script>
     <!--<py-script src="Milan.py">
@@ -710,9 +662,9 @@
     <py-script src="Ashtakoot.py">
 
     </py-script>
-    <py-script src="chatbot.py">
-
-    </py-script>
    
+    <script src="Chatscript.js" ></script>
+    <script type="module" src="qa_model.js" ></script>
 </body>
 </html>
+
