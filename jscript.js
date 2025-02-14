@@ -13,8 +13,8 @@ const result = document.getElementById("Report");
 const lagnan = document.getElementById("asc");
 //ANOTHER HREF FOR CHART
 function backtochart(href) {
-    setTimeout(function() {
     playAudio()
+    setTimeout(function() {
     changePositions()
         window.location.href = href;
     }, 3000); // 3000 milliseconds = 3 seconds
@@ -713,18 +713,25 @@ document.addEventListener('touchend', () => {
 
 let chatvisi = true
 function chatopen() {
+    
     const pElement = document.getElementById('Chatscreen');
     const logoment = document.getElementById('video');
     if (chatvisi == false) {
         pElement.style.visibility = "Hidden";
         logoment.style.visibility = "Hidden";
-        chatvisi = true
+        chatvisi = true;
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        slider.style.transition = 'none';
+        
     } else {
         pElement.style.visibility = "Visible";
         logoment.style.visibility = "Visible";
         logoment.src = "https://i.ibb.co/pWcrcnV/D-A-I-VA.png"
+      
         
-        chatvisi = false
+        chatvisi = false;
+        isDragging = true;
 
     }
 
