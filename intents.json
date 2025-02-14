@@ -1,0 +1,109 @@
+{
+    "intents": [
+      {
+        "tag": "career_growth",
+        "patterns": [
+          "How can I grow in my career?",
+          "What are the best ways to advance in my career?",
+          "How do I achieve success in my career?"
+        ],
+        "responses": [
+          "Career growth requires continuous learning, skill development, networking, and taking on new challenges."
+        ]
+      },
+      {
+        "tag": "career_change",
+        "patterns": [
+          "Should I change my career?",
+          "How do I switch careers?",
+          "What should I consider before changing my career?"
+        ],
+        "responses": [
+          "Before changing careers, assess your skills, interests, job market trends, and financial stability."
+        ]
+      },
+      {
+        "tag": "job_search",
+        "patterns": [
+          "How do I find a new job?",
+          "What are the best job search strategies?",
+          "Where should I look for job opportunities?"
+        ],
+        "responses": [
+          "Effective job searching includes using job portals, networking, tailoring your resume, and preparing for interviews."
+        ]
+      },
+      {
+        "tag": "interview_tips",
+        "patterns": [
+          "How do I prepare for an interview?",
+          "What are the best interview tips?",
+          "How can I perform well in a job interview?"
+        ],
+        "responses": [
+          "Prepare for interviews by researching the company, practicing common questions, dressing professionally, and staying confident."
+        ]
+      },
+      {
+        "tag": "career_skills",
+        "patterns": [
+          "What skills are important for career success?",
+          "Which skills should I develop for a better career?",
+          "How can I improve my professional skills?"
+        ],
+        "responses": [
+          "Key career skills include communication, problem-solving, leadership, adaptability, and technical expertise."
+        ]
+      },
+      {
+        "tag": "work_life_balance",
+        "patterns": [
+          "How do I maintain work-life balance?",
+          "What are the best ways to balance work and personal life?",
+          "How can I avoid burnout at work?"
+        ],
+        "responses": [
+          "To maintain work-life balance, set boundaries, prioritize tasks, take breaks, and engage in hobbies or relaxation activities."
+        ]
+      },
+      {
+        "tag": "salary_negotiation",
+        "patterns": [
+          "How do I negotiate my salary?",
+          "What are the best salary negotiation tips?",
+          "How can I ask for a raise?"
+        ],
+        "responses": [
+          "For salary negotiation, research industry standards, highlight your achievements, and be confident while discussing compensation."
+        ]
+      },
+      {
+        "tag": "career_planning",
+        "patterns": [
+          "How do I plan my career?",
+          "What steps should I take for career planning?",
+          "How do I set career goals?"
+        ],
+        "responses": [
+          "Career planning involves setting clear goals, developing skills, seeking mentorship, and staying updated on industry trends."
+        ]
+      },
+      {
+        "tag": "career_recommendation",
+        "patterns": [
+          "Can you recommend me a career ?",
+          "Help me to choose a sector",
+          "Help me to get into a field",
+          "which jobs will be best for me?",
+          "find me a few jobs",
+          "where can i work?",
+          "suggest me some jobs"
+          
+        ],
+        "responses": [
+          "I can help you to find a most suitable career path."
+        ]
+      }
+    ]
+  }
+  
