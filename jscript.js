@@ -510,15 +510,56 @@ if(lagnan.innerText == "1")
 //This part is for Kundaliyoga
 
 
+
+//This part is to extract the output if possible:
+    function collectGeneralInfo() {
+        let patternText = document.getElementById("output").innerText;
+
+        if (!patternText) {
+            console.error("No data available in output!");
+            return "";
+        }
+
+        try {
+            let record = JSON.parse(patternText); // Parse JSON correctly
+            let generalInfo = Object.entries(record)
+                .filter(([key, value]) => key.startsWith("General Information") && value)
+                .map(([key, value]) => `${key}: ${value}`);
+
+            return generalInfo.length ? generalInfo.join(", ") : "No general information found.";
+        } catch (error) {
+            console.error("Error processing data:", error);
+            return "";
+        }
+    }
+
+    let generalfromgs = collectGeneralInfo()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //This part Displays the result
     result.innerText = "The Predictions for the chart is :\n\n\n";
+    result.innerText = result.innerText+ generalfromgs+"\n\n";
     result.innerText = result.innerText+"*The Work Enviorment and Possible choices*:\n\n";
     result.innerText = result.innerText+ "The Native's work enviorment is in the field of"+" "+fieldof+" "+"which will be related to"+" "+ relatedto;
     result.innerText = result.innerText +"This person will have their major lookout for "+ aim +"\n Apart from this the person has "+ keywordrahu;
     result.innerText = result.innerText + "\n\n\n *The Marriage and Spouse Predictions*:\n\n"
     result.innerText = result.innerText + "The Native's love life would be: "+partner;
-    result.innerText = result.innerText + "\n\n *Benefic Yog occuring in your chart are *\n:";
-    result.innerText = result.innerText + "\n *Malefic Yog occuring in your chart are *\n:";
+    
 }
 
 //tHIS PART IS Translation
