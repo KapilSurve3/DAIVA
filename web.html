@@ -11,7 +11,7 @@
     <script defer src="jscript.js" type="text/javascript"></script>
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
-
+   
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script> <!-- ONNX-->
    <!-- <script src="https://cdn.jsdelivr.net/npm/@xenova/transformers@latest"></script>  transformer -->
@@ -21,7 +21,7 @@
     <py-env>
         - matplotlib
         - pyodide.http
-  
+                                                              
     </py-env>
     <py-config>
         packages = ["pandas", "requests"]
@@ -128,17 +128,21 @@
         <div class="form-container" style="padding-top: 10%;">
             <div class="form-row">
                 
-                <button id="GetChart" class="button4" pys-onClick="QRFetch" >Get QR</button>
+                <button id="GetChart" class="button4" onclick="startchat()" >Get Data</button>
                
-                <button id="updateChart" class="button4">./Help</button>
+                <button id="helpbtn" class="button4">Confession</button>
 
-                <button id="up" class="button4" onclick="chatopen()" >Chat</button>
+                <button id="up" class="button4" onclick="chatopen()" >Chatbot</button>
             </div>
             <div class="form-row">
                 
                 <input type="number" id="id2" name="id2" placeholder="Enter Id" style="border-color: rgb(3, 6, 34); width: 50%; background-color: rgb(103, 199, 251); color: rgb(15, 1, 32); display: block;margin-top: 10px; margin-left: 10px; padding: 5px;">
-                <input type="text" id="gender" name="gender" placeholder="Enter Sex" style="border-color: rgb(3, 6, 34); width: 50%; background-color: rgb(103, 199, 251); color: rgb(15, 1, 32); display: block;margin-top: 10px; margin-left: 10px; padding: 5px;" >
-              
+               
+                <select name="gender" id="gender"style="border-color: rgb(3, 6, 34); width: 50%; background-color: rgb(103, 199, 251); color: rgb(15, 1, 32); display: block;margin-top: 10px; margin-left: 10px; padding: 5px;" >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>
+                  </select>
             </div>
             <div class="form-row">
                 
@@ -165,7 +169,7 @@
     </a>
     <div id="slider" class="slider">
         <img src="/Images/Uparrow.png" id="video" width="75%" style="visibility: hidden;left:15%;top: 20% ;position:fixed; z-index: 1;" autoplay loop muted></img>
-     
+        <div id = "confessions" ></div>
         <div style="color:gold ;" id="Chatscreen" class="slider2">
             <div class="chat-container">
                 <div id="chat-screen" class="chat-screen">
@@ -276,7 +280,71 @@
                     html5QrCode.scanFileV2(file, true)
                     .then(decodedResult => {
                         // Display the decoded text
+                        const laxmi_chautisa = [
+                            [16, 9, 4, 5],
+                            [3, 6, 14, 10],
+                            [13, 12, 1, 8],
+                            [2, 7, 14, 11]
+                        ];
+
+                        // Function to decrypt the text
+                        function decrypt(encrypted_text) {
+                            let decrypted_text = "";
+                            const n = laxmi_chautisa.length;
+
+                            for (let i = 0; i < encrypted_text.length; i++) {
+                                // Get the Unicode value of the encrypted character
+                                const unicode_val = encrypted_text.charCodeAt(i);
+
+                                // Get the position in the magic square (row and column)
+                                const row = i % n;
+                                const col = i % n;
+
+                                // Reverse the shift using the magic square value
+                                const original_unicode = unicode_val - laxmi_chautisa[row][col];
+
+                                // Convert back to character and add to decrypted text
+                                decrypted_text += String.fromCharCode(original_unicode);
+                            }
+
+                            return decrypted_text;
+                        }
+
                         document.getElementById('result').innerText = `${decodedResult.decodedText}`;
+                        const dcode = decrypt(decodedResult.decodedText);
+                        const wcode = dcode;
+
+                        // Split the decoded information
+                        const [imp, placements, degrees, id] = wcode.split('#');
+                        const [asc, moondeg] = imp.split('/');
+                        const [sunpl, moonpl, mercurypl, venuspl, marspl, saturnpl, jupiterpl, rahupl, ketupl] = placements.split('/');
+                        const [sundeg, mercurydeg, venusdeg, marsdeg, saturndeg, jupiterdeg, rahudeg, ketudeg] = degrees.split('/');
+
+                        // Assign values to respective elements
+                      // Assign values to respective elements
+                        document.getElementById('Sunnum').innerText = sunpl;
+                        document.getElementById('Moonnum').innerText = moonpl;
+                        document.getElementById('Mercurynum').innerText = mercurypl;
+                        document.getElementById('Venusnum').innerText = venuspl;
+                        document.getElementById('Marsnum').innerText = marspl;
+                        document.getElementById('Saturnnum').innerText = saturnpl;
+                        document.getElementById('Jupiternum').innerText = jupiterpl;
+                        document.getElementById('Rahunum').innerText = rahupl;
+                        document.getElementById('Ketunum').innerText = ketupl;
+                        document.getElementById('asc').innerText = asc;
+
+                        // Assign degree values to respective elements
+                        document.getElementById('Sundeg').innerText = sundeg;
+                        document.getElementById('Moondeg').innerText = moondeg+".0";
+                        document.getElementById('Mercurydeg').innerText = mercurydeg;
+                        document.getElementById('Venusdeg').innerText = venusdeg;
+                        document.getElementById('Marsdeg').innerText = marsdeg;
+                        document.getElementById('Saturndeg').innerText = saturndeg;
+                        document.getElementById('Jupiterdeg').innerText = jupiterdeg;
+                        document.getElementById('Rahudeg').innerText = rahudeg;
+                        document.getElementById('Ketudeg').innerText = ketudeg;
+                        document.getElementById('result').innerText = `Your Chart Has been Saved !`;
+
                     })
                     .catch(err => {
                         console.error("QR code reading failed: ", err);
@@ -431,7 +499,7 @@
                         document.getElementById('Jupiterdeg2').innerText = jupiterdeg;
                         document.getElementById('Rahudeg2').innerText = rahudeg;
                         document.getElementById('Ketudeg2').innerText = ketudeg;
-                        document.getElementById('result').innerText = `Your Chart Has been Saved !`;
+                        document.getElementById('result').innerText = `Your Match Has been Saved !`;
                     }
             
                     function onScanError(errorMessage) {
@@ -500,7 +568,9 @@
             <div class="lower-div">
                 <button class="button1"  id="Switcher" pys-onClick ="Switchchart" onclick="backtochart('#daiva-container2')">MYCHART</button>
                 
-                <button class="button1" ID="Predictro" py-click="Compato" onclick="playAudio3()" >MILAN</button> 
+                <a href="#daiva-container2"><button class="button1" ID="Predictro" py-click="Compato" onclick="playAudio3()" >MILAN</button></a>
+                <a href="#daiva-container"><button  class="button1" id="Predictro" onclick ="Predict()">PREDICT</button> </a>
+                <a href="#daiva-container"><button class="button1" id="Marriage" py-click="DECODE" >SEARCH</button></a>
                 <audio id = "myAudio3" src="Classic dhol.mp3"  ></audio>
                 
             </div>
@@ -569,9 +639,9 @@
                 </div>
 
             
-                <label style="font-size: small; color: rgb(167, 209, 255); display: block; margin: 10px auto;">Enter your Ascendant</label>
-                <input type="number" id="Asc" name="Asc" style="width: 90%; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto; padding: 5px;"></input>
-               
+                <label style="font-size: small; color: rgb(167, 209, 255); display: block; margin: 10px auto;">Overall Matchmaking</label>
+                <!--<input type="number" id="Asc" name="Asc" style="width: 90%; background-color: rgb(7, 7, 30); color: rgb(114, 182, 255); display: block; margin: 5px auto; padding: 5px;"></input>-->
+                <label class="Report" id="matchresult" ></label>
             </div>
 
             <div class="lower-div">
@@ -579,9 +649,7 @@
 
                 <!-- Area to Display Chart -->
                 
-                <a href="#daiva-container"><button  class="button1" id="Predictro" onclick ="Predict()">PREDICT</button> </a>
-                <a href="#daiva-container"></a><button class="button1" id="Marriage" py-click="DECODE" >SCANNER</button></a>
-                <div style="contain: content; overflow-wrap: anywhere;color: #a1ccff;display: none;" id="output"></div>
+            
                 
             
             </div>
@@ -589,6 +657,8 @@
         <div class="right-content">
             <!-- Right content goes here -->
           
+            <div style="contain: content; overflow-wrap: anywhere;color: #a1ccff;" id="output"></div>
+            <div style="contain: content; overflow-wrap: anywhere;color: #a1ccff;" id="datasetsofpeople"></div>
         </div>
     </section>
 
@@ -664,6 +734,7 @@
     </py-script>
    
     <script src="Chatscript.js" ></script>
+    <script src="urgenthelp.js"></script>
     <script type="module" src="qa_model.js" ></script>
 </body>
 </html>
