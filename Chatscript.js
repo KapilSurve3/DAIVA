@@ -1,5 +1,5 @@
 async function sendMessage() {
-    startchat()
+    
     let userMessage = document.getElementById("chartcode").value.toLowerCase();
     let replymessage = " "
 
@@ -7,7 +7,7 @@ async function sendMessage() {
         replymessage = "Namaste"
         displayMessage(userMessage, "user-message");
         displayMessage(replymessage, "bot-message");
-
+        
     }
     else if (userMessage == "yes"){
         displayMessage(userMessage,"user-message")
@@ -60,23 +60,72 @@ async function fetchData(id) {
     try {
         let response = await fetch(sheetUrl);
         let data = await response.json();
-    
 
-        if (data.length > 0) {
-            let headers = Object.keys(data[0]);
-            let record1 = Object.entries(data[id]);
-            console.log(headers)
-            console.log(record1)
+        console.log(data); // Check the entire data structure
+        console.log(data[0]); // Check the first record
+        console.log(data[0].value); // Check the object inside value
+        console.log("First record:", data[0]);
+        console.log("Type of first record:", typeof data[0]);
+        function convertToCSV(data) {
+            if (!data || data.length === 0) {
+                console.error("No data available to convert.");
+                return '';
+            }
+        
+            console.log("First record:", data[0]);
+            console.log("Type of first record:", typeof data[0]);
+        
+            const headers = Object.keys(data[0]);
+            console.log("Headers:", headers);
+        
+            const rows = data.map(record => {
+                console.log("Current record:", record);
+                return headers.map(header => {
+                    const value = record[header] ?? '';
+                    console.log(`Value for ${header}:`, value);
+                    return value;
+                });
+            });
+        
+            console.log("Rows:", rows);
+        
+            const csv = [
+                headers.join('~'), // Header row
+                ...rows.map(row => row.join('~')) // Data rows
+            ].join('|');
+        
+            console.log("Final CSV:", csv);
+            console.log(typeof(csv))
+            return csv;
+        }
+        const csvfile = convertToCSV(data)
+        const dataofpeople = document.getElementById('datasetsofpeople')
+        dataofpeople.innerText = csvfile
+
+        if (Array.isArray(data) && id >= 0 && id < data.length) {
+            let record = data[id]; // Ensure id is valid
+            let recordEntries = Object.entries(record);
+            
+            console.log("Headers:", Object.keys(record));
+            console.log("Record:", recordEntries);
+
             const backdata = document.getElementById('output');
-            backdata.innerText = record1
-            // Add table headers
-         
+            backdata.innerText = JSON.stringify(record, null, 2); // Pretty print JSON
+            
+
+
+           
+
+
+
+
+        } else {
+            console.error("Invalid ID or no data found");
         }
     } catch (error) {
         console.error("Error fetching data:", error);
     }
 }
-
 
 
 
@@ -177,25 +226,23 @@ function cleanAndTokenize(text) {
 
 //This part start for all the career recommendation stuff
 
-function recommendcareer(){
+function recommendcareer() {
     let patternText = document.getElementById("output").innerText;
 
-    if (!patternText || typeof patternText != "string") {
-        console.error("Invalid text input!");
+    if (!patternText) {
+        console.error("No data available in output!");
         return "";
     }
 
-    const pairs = patternText.split(",");
-    let jobs = [];
+    try {
+        let record = JSON.parse(patternText); // Parse JSON correctly
+        let jobs = Object.entries(record)
+            .filter(([key, value]) => key.startsWith("Job_") && value)
+            .map(([key, value]) => `${key}: ${value}`);
 
-    for (let i = 0; i < pairs.length - 1; i += 2) {
-        let key = pairs[i]?.trim();
-        let value = pairs[i + 1]?.trim();
-
-        if (key && key.startsWith("Job_") && value) {
-            jobs.push(`${key}: ${value}`);
-        }
+        return jobs.length ? jobs.join(", ") : "No jobs found.";
+    } catch (error) {
+        console.error("Error processing data:", error);
+        return "";
     }
-
-    return jobs.join(", ");
 }
