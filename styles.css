@@ -380,6 +380,14 @@ body {
     color: rgb(167, 236, 243);
     align-self: flex-start;
 }
+.help-message {
+    background-color: #905701;
+    color: rgb(253, 255, 213);
+    align-self: flex-start;
+    border-radius: 10px;
+    border-width: 10px;
+    border-color: #0069a2;
+}
 
 @keyframes animate {
     0%,28%,50%,65%
