@@ -1,11 +1,11 @@
 from js import document
 from js import window
-
+import pandas as pd
 from pyodide.http import open_url
-
+from io import StringIO
 #main printing function
-result = document.getElementById('result')
-
+result = document.getElementById('matchresult')
+result2 = document.getElementById('matchresult')
 
 Rashilords = ("Jupiter","Mars","Venus","Mercury","Moon","Sun","Mercury","Venus","Mars","Jupiter","Saturn","Saturn")
 Rashislist = ("Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces")
@@ -170,6 +170,32 @@ nakshatra_to_yoni = {
         'Uttara Bhadrapada': 'Cow',
         'Revati': 'Elephant'
     }
+
+
+
+guna_names = [
+    "Varnascore",
+    "Vashyascore",
+    "Taramilanscore",
+    "Yonimilanscore",
+    "Grahamilanscore",
+    "Ganamilanscore",
+    "Bhakootmilanscore",
+    "Nadimilanscore"
+]
+
+descriptions = [
+    "Spiritual and mental compatibility",
+    "Dominance and mutual control in the relationship",
+    "Star-based compatibility for well-being",
+    "Physical and sexual compatibility",
+    "Planetary compatibility and mental connection",
+    "Temperamental compatibility",
+    "Long-term stability and harmony",
+    "Genetic and health compatibility"
+]
+
+
 #This is Rolling function
 def roll(num):
   house = num % 12
@@ -456,10 +482,10 @@ def calculate_astakoot_milan(nakshatra1, nakshatra2,pada1,pada2,asc1,asc2,moonpl
   Bhakootmilanscore = int(Bhakootmilan(nakshatra1,nakshatra2))
   Nadimilanscore = int(Nadimilan(nakshatra1,nakshatra2))
   score = Varnascore + Vashyascore + Taramilanscore + Yonimilanscore + Grahamilanscore + Ganamilanscore + Bhakootmilanscore + Nadimilanscore
-
+  ashtagunas = [Varnascore,Vashyascore,Taramilanscore,Yonimilanscore,Grahamilanscore,Ganamilanscore,Bhakootmilanscore,Nadimilanscore]
   print(score)
 
-  return score
+  return score,ashtagunas
 
 
 
@@ -634,6 +660,7 @@ def Compato(*arg,**kwargs):
      genderofchart = str(document.getElementById('gender').value)
      rashibychart = int(document.getElementById('asc').innerText)
      moonplacebychart = int(document.getElementById('Moonnum').innerText)
+     marsplacebychart = int(document.getElementById('Marsnum').innerText)
      def rashifinder(rashibychart,moonplace):      
                Ascendant = rashibychart
                lord = moonplace
@@ -655,14 +682,22 @@ def Compato(*arg,**kwargs):
             return "Male"
         elif genderofchart == None:
            return "X"
+     def mangaldosha(marspos1):
+        if marspos1 in [1, 2, 4, 7, 8, 12]:
+            return "Manglik"
+        else:
+            return "Non-Manglik"
 
      Sal,Mah,nakshatraname,pada1,Nlord,dashalist,kallist = Jyotantar(rashiname,moondegbychart)   
      
+
+
      username = document.getElementById('id2').innerText
      gender = gendasign(genderofchart)
      ascendant = int(document.getElementById('asc2').innerText)
-     moon_placement = int(document.getElementById('Moonnum').innerText)
-     moon_deg = (document.getElementById('Moondeg').innerText)
+     moon_placement = int(document.getElementById('Moonnum2').innerText)
+     moon_deg = (document.getElementById('Moondeg2').innerText)
+     marsplacebychart2 = int(document.getElementById('Marsnum2').innerText)
      print(f"Username: {username}, Gender: {gender}, Ascendant: {ascendant}, Moon Placement: {moon_placement}, Moon Degree: {moon_deg}")
      if genderofchart == "Female":
         recordnumber = username
@@ -672,11 +707,17 @@ def Compato(*arg,**kwargs):
         Sal,Mah,nakshatranameofrecord,pada2,Nlord,dashalist,kallist = Jyotantar(rashinamer,str(moon_deg))
         nakshatranameofrecord 
         
-        astakoot_milan_result = calculate_astakoot_milan(nakshatraname, nakshatranameofrecord,pada1,pada2,rashibychart,lagnar,moonplacebychart,moon_placement)
+        astakoot_milan_result,ashtagunas = calculate_astakoot_milan(nakshatraname, nakshatranameofrecord,pada1,pada2,rashibychart,lagnar,moonplacebychart,moon_placement)
         astakoot_milan_result = int((int(astakoot_milan_result)/36) * 100 )
         guna = round((astakoot_milan_result/100)*36)
-        result.innerText=(f"The Nakshatras are {nakshatraname} {nakshatranameofrecord} respectively. Gunamilan is {guna}/36 and compaitibility is {astakoot_milan_result}%" )
         
+        mangaldosh = mangaldosha(marsplacebychart)
+        mangaldosh2 = mangaldosha(marsplacebychart2)
+        result.innerText= (f"Your Nakshatra is {nakshatraname}, and the recorded Nakshatra is {nakshatranameofrecord}. Guna Milan score is {guna}/36, with a compatibility of {astakoot_milan_result}%. You are {mangaldosh}, and the match's chart is {mangaldosh2}.")
+        outof = 0
+        for i in range(len(ashtagunas)):
+          outof = outof + 1
+          result.innerText = result.innerText + (f"- {guna_names[i]}: {descriptions[i]} → {ashtagunas[i]}/{outof} ")
 
      elif genderofchart == "Male":
         recordnumber = username
@@ -686,10 +727,16 @@ def Compato(*arg,**kwargs):
         Sal,Mah,nakshatranameofrecord,pada2,Nlord,dashalist,kallist = Jyotantar(rashinamer,str(moon_deg))
         nakshatranameofrecord 
         
-        astakoot_milan_result = calculate_astakoot_milan( nakshatranameofrecord,nakshatraname,pada2,pada1,lagnar,rashibychart,moon_placement,moonplacebychart)
+        astakoot_milan_result,ashtagunas = calculate_astakoot_milan( nakshatranameofrecord,nakshatraname,pada2,pada1,lagnar,rashibychart,moon_placement,moonplacebychart)
         astakoot_milan_result = int((int(astakoot_milan_result)/36) * 100 )
         guna = round((astakoot_milan_result/100)*36)
-        result.innerText=(f"The Nakshatras are {nakshatraname} {nakshatranameofrecord} respectively. Gunamilan is {guna}/36 and compaitibility is {astakoot_milan_result}%" )
+        mangaldosh = mangaldosha(marsplacebychart)
+        mangaldosh2 = mangaldosha(marsplacebychart2)
+        result.innerText= (f"Your Nakshatra is {nakshatraname}, and the recorded Nakshatra is {nakshatranameofrecord}. Guna Milan score is {guna}/36, with a compatibility of {astakoot_milan_result}%. You are {mangaldosh}, and the match's chart is {mangaldosh2}.")
+        outof = 0
+        for i in range(len(ashtagunas)):
+          outof = outof + 1
+          result.innerText = result.innerText + (f"- {guna_names[i]}: {descriptions[i]} → {ashtagunas[i]}/{outof} ")
      else:
         recordnumber = username
         lagnar = int(ascendant)
@@ -698,13 +745,124 @@ def Compato(*arg,**kwargs):
         Sal,Mah,nakshatranameofrecord,pada2,Nlord,dashalist,kallist = Jyotantar(rashinamer,str(moon_deg))
         nakshatranameofrecord 
         
-        astakoot_milan_result = calculate_astakoot_milan( nakshatranameofrecord,nakshatraname,pada2,pada1,lagnar,rashibychart,moon_placement,moonplacebychart)
+        astakoot_milan_result,ashtagunas = calculate_astakoot_milan( nakshatranameofrecord,nakshatraname,pada2,pada1,lagnar,rashibychart,moon_placement,moonplacebychart)
         astakoot_milan_result = int((int(astakoot_milan_result)/36) * 100 )
         guna = round((astakoot_milan_result/100)*36)
         result.innerText=(f"The Nakshatras are {nakshatraname} {nakshatranameofrecord} respectively. Gunamilan is {guna}/36 and compaitibility is {astakoot_milan_result}%" )
-
+        outof = 0
+        for i in range(len(ashtagunas)):
+          outof = outof + 1
+          result.innerText = result.innerText + (f"- {guna_names[i]}: {descriptions[i]} → {ashtagunas[i]}/{outof} ")
            
-  
+
+     #df = pd.read_csv(open_url("https://raw.githubusercontent.com/KapilSurve3/OtherProjects/main/Userdata1.csv"))
+     datasetofpeople = document.getElementById('datasetsofpeople').innerText
+     print(datasetofpeople)
+     rows = datasetofpeople.split("|")
+      # First row is the header
+     col = rows[0].split("~")
+     print(col)
+     data = [row.split("~") for row in rows[1:]]
+     df = pd.DataFrame(data, columns=col)
+     print(df)
+
+     perlist = []
+
+# Read the dataset into a pandas DataFrame
+   
      
+# Iterate over each record (,row) in the DataFrame
+     def maxfromlist(perlist,gender,df):
      
+      perlista = []
+
+      # Flag to track if the previous element was a zero
+      prev_zero = True
+      print(f"the list is{perlist}")
+      for num in perlist:
+          
+          if num == 0 and prev_zero == True:
+              # Append non-zero elements directly to the result list
+              perlista.append(num)
+          elif num == 0 and prev_zero == False:
+             prev_zero = True
+          elif num != 0:
+             perlista.append(num)
+             prev_zero = False
+ 
+          
+      print(perlista)
+ 
+      maxele = perlista[0]
+
+      for j in perlista:
+         if j > maxele:
+            maxele = j
+      k = perlista.index(maxele) 
+      print(k)
+      if gender == "Male":
+        
+        for i, row in df.iterrows():
+          if i == k:
+            row_to_display = row['Name']
+            if int(maxele) >= 60:
+              row_string = str(row_to_display)
+            else:
+              row_string = "--------"
+              maxele = 0
             
+            row_string = str(row_to_display)
+            result.innerText = result.innerText + f" According to our database {row_string} With Compatibility of {int(maxele)}%"
+          
+      elif gender == "Female":
+      
+        for i, row in df.iterrows():
+          if i == k:
+            row_to_display = row['Name']
+            if int(maxele) >= 60:
+              row_string = str(row_to_display)
+            else:
+              row_string = "------"
+              maxele = 0
+           
+            row_string = str(row_to_display)
+            result.innerText = result.innerText + f" According to our database {row_string} With Compatibility of {int(maxele)}%"
+              
+     count = 0
+     for index, row in df.iterrows():
+          count += 1
+          username = row['Name']
+          gender = str(row['gender'])
+          ascendant = int(row['Ascendant_rashi'])
+          moon_placement = int(row['Moon_house'])
+          moon_deg = str(row['Moon_degrees']+".12")
+          print(f"Username: {username}, Gender: {gender}, Ascendant: {ascendant}, Moon Placement: {moon_placement}, Moon Degree: {moon_deg}")
+          if genderofchart == "Female":
+            if genderofchart != gender:
+                recordnumber = index
+                lagnar = int(ascendant)
+                placedr = rashifinder(int(ascendant),int(moon_placement))
+                rashinamer = Rashislist[placedr-1]
+                Sal,Mah,nakshatranameofrecord,pada2,Nlord,dashalist,kallist = Jyotantar(rashinamer,str(moon_deg))
+                nakshatranameofrecord 
+                
+                astakoot_milan_result,ashtagunas = calculate_astakoot_milan(nakshatraname, nakshatranameofrecord,pada1,pada2,rashibychart,lagnar,moonplacebychart,moon_placement)
+                astakoot_milan_result = int((int(astakoot_milan_result)/36) * 100 )
+                perlist.append(int(astakoot_milan_result))
+            perlist.append(int(0)) 
+
+          elif genderofchart == "Male":
+                        
+            if genderofchart != gender:
+                recordnumber = index
+                lagnar = int(ascendant)
+                placedr = rashifinder(int(ascendant),int(moon_placement))
+                rashinamer = Rashislist[placedr-1]
+                Sal,Mah,nakshatranameofrecord,pada2,Nlord,dashalist,kallist = Jyotantar(rashinamer,str(moon_deg))
+                nakshatranameofrecord 
+                
+                astakoot_milan_result,ashtagunas = calculate_astakoot_milan( nakshatranameofrecord,nakshatraname,pada2,pada1,lagnar,rashibychart,int(moon_placement),moonplacebychart)
+                astakoot_milan_result = int((int(astakoot_milan_result)/36) * 100 )
+                perlist.append(int(astakoot_milan_result))
+            perlist.append(int(0))
+     maxfromlist(perlist,gender,df)
