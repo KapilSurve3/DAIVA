@@ -1671,7 +1671,7 @@ def generate_qr_code(planetary_positions,id_number):
     qr_data = f"{ascendant_rashi}/{moon_degrees}#\
 {sun_house}/{moon_house}/{mercury_house}/{venus_house}/{mars_house}/{saturn_house}/{jupiter_house}/{rahu_house}/{ketu_house}#\
 {sun_degrees}/{mercury_degrees}/{venus_degrees}/{mars_degrees}/{jupiter_degrees}/{saturn_degrees}/{rahu_degrees}/{ketu_degrees}#\
-{next_id}"
+{id_number}"
 
    
 
