@@ -130,7 +130,7 @@
                 
                 <button id="GetChart" class="button4" onclick="startchat()" >Get Data</button>
                
-                <button id="helpbtn" class="button4">Confession</button>
+                <button id="helpbtn" class="button4" py-click="QRFetch" >Generate QR</button>
 
                 <button id="up" class="button4" onclick="chatopen()" >Chatbot</button>
             </div>
@@ -713,7 +713,7 @@
             Ketuch.write(document.getElementById("Ketudeg2").innerText)
 
         def QRFetch(*arg,**kwargs):
-            window.open("https://jmo1ozciqh2bfonxzrhgzw.on.drv.tw/www.DAIVAQR.com/", "_blank")
+            window.open("https://daivathepredictor.streamlit.app/", "_blank")
 
             
         from pyscript import display
