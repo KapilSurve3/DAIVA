@@ -1,0 +1,13 @@
+streamlit
+ephem
+geopy
+qrcode
+pillow
+pandas
+numpy
+tensorflow
+scikit-learn
+matplotlib
+PyPDF2
+nltk
+transformers
