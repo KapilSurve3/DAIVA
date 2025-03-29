@@ -1746,7 +1746,7 @@ if st.button("Generate QR Code"):
 
         # Add additional text (e.g., instructions)
         font = ImageFont.truetype(custom_font_path, 10)
-        instruction_text = "Scan the QR on DAIVA web APP id : "+ str(next_id)
+        instruction_text = "Scan the QR on DAIVA web APP id : "+ str(name)
         instruction_position = (50, 340)  # Adjust position for this text
         instruction_color = (6, 8, 33, 210)  # Text color
 
