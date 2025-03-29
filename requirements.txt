@@ -14,7 +14,3 @@ transformers
 gspread
 oauth2client
 yagmail
-google-auth
-google-auth-oauthlib
-google-auth-httplib2
-sudo ntpdate -s time.nist.gov
