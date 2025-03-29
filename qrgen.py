@@ -1623,7 +1623,7 @@ SCOPE = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
          "https://www.googleapis.com/auth/drive"]
 
 # Path to your service account credentials file
-SERVICE_ACCOUNT_FILE = ".devcontainer/db-gsheetskapil-d740f97d71c0.json"
+SERVICE_ACCOUNT_FILE = "db-gsheetskapil-d740f97d71c0.json"
 
 # Authenticate using the service account
 credentials = ServiceAccountCredentials.from_json_keyfile_name(SERVICE_ACCOUNT_FILE, SCOPE)
