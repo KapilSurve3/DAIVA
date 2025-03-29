@@ -14,3 +14,6 @@ transformers
 gspread
 oauth2client
 yagmail
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
