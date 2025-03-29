@@ -41,81 +41,6 @@ except LookupError:
 
 # Load pre-trained BERT model (fine-tuned for quality scoring)
 @st.cache_resource
-def load_model1():
-    model = BertForSequenceClassification.from_pretrained("fine_tuned_bert_model")
-    tokenizer = BertTokenizer.from_pretrained("fine_tuned_bert_tokenizer")
-    return model, tokenizer
-# Predefine qualities
-qualities = ['Analytical', 'Practical', 'Creative', 'Leadership', 'Hard',
-             'Smart', 'Technical', 'Caring', 'Communication', 'Persuasive',
-             'Integrity', 'Imagination', 'Risk', 'Spontaneous', 'Determination',
-             'Patience', 'Knowledge', 'Wisdom']
-
-# Load PDF document
-def load_pdf_document(file):
-    pdf_reader = PyPDF2.PdfReader(file)
-    text = ''
-    for page_num in range(len(pdf_reader.pages)):
-        page = pdf_reader.pages[page_num]
-        text += page.extract_text()
-    return text
-
-# Preprocess the document text
-def preprocess_text(text):
-    tokens = word_tokenize(text)
-    tokens = [word.lower() for word in tokens if word.isalnum()]
-    processed_text = ' '.join(tokens)
-    return processed_text
-
-# Predict quality scores using the fine-tuned BERT model
-def predict_quality_scores(text, model, tokenizer):
-    inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True)
-    outputs = model(**inputs)
-    logits = outputs.logits.detach().numpy()
-    scores = np.where(logits > 0, 1, 0)
-    return scores.flatten()
-
-# Extract and predict qualities for the entire document
-def extract_and_predict_from_resume(pdf_file, model, tokenizer):
-    document_text = load_pdf_document(pdf_file)
-
-    # Use standard sent_tokenize with explicit language
-    sentences = sent_tokenize(document_text, language='english')
-
-    total_quality_scores = np.zeros(len(qualities))
-
-    for sentence in sentences:
-        processed_sentence = preprocess_text(sentence)
-        predicted_scores = predict_quality_scores(processed_sentence, model, tokenizer)
-        total_quality_scores += predicted_scores
-
-    aggregated_quality_scores = dict(zip(qualities, total_quality_scores))
-    return aggregated_quality_scores
-
-# Plot the aggregated quality scores
-def plot_quality_scores(aggregated_quality_scores):
-    """Prepare a dataset from qualities and scores, display it in a single-row format, and plot the scores."""
-    # Convert the dictionary into a DataFrame with a single row
-    df = pd.DataFrame([aggregated_quality_scores])
-
-    # Display the dataset in Streamlit
-    st.write("### Aggregated Quality Scores Dataset")
-    st.dataframe(df)  # Show as an interactive table
-
-    # Plot the scores
-    qualities = list(aggregated_quality_scores.keys())
-    scores = list(aggregated_quality_scores.values())
-
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.barh(qualities, scores, color='skyblue')
-    ax.set_xlabel('Score')
-    ax.set_title('Aggregated Quality Scores for the Document')
-    plt.tight_layout()
-    
-    # Display the plot in Streamlit
-    st.pyplot(fig)
-
-# Streamlit UI
 
 
 
@@ -1666,55 +1591,6 @@ results_df.to_csv('scored_qualities.csv', index=False)
 st.dataframe(results_df)
 train_df, test_df, sector_jobs_df, model = load_data()
 
-#This is CV Insights
-st.title("CV Insights")
-    
-model, tokenizer = load_model1()
-
-st.write("Upload a PDF document and view the quality scores graph.")
-
-pdf_file = st.file_uploader("Choose a PDF file", type="pdf")
-
-if pdf_file is not None:
-    st.write("Processing your document...")
-    aggregated_quality_scores = extract_and_predict_from_resume(pdf_file, model, tokenizer)
-    
- 
-    plot_quality_scores(aggregated_quality_scores)
-     
-
-    st.write("Aggregated Quality Scores:")
-    cvscoredf = pd.DataFrame([aggregated_quality_scores])
-    cvscoredf1 = cvscoredf
-    cvscoredf = cvscoredf.squeeze()
-
-    # Ensure both DataFrames are 2D and have the same columns
-    cvscoredf = pd.DataFrame(cvscoredf).T if cvscoredf.ndim == 1 else cvscoredf
-
-    # List of 18 qualities
-    qualities = ['Analytical', 'Practical', 'Creative', 'Leadership', 'Hard', 'Smart', 
-                'Technical', 'Caring', 'Communication', 'Persuasive', 'Integrity', 
-                'Imagination', 'Risk', 'Spontaneous', 'Determination', 'Patience', 
-                'Knowledge', 'Wisdom']
-
-    # Filter both DataFrames for only the qualities
-    cvscoredf = cvscoredf[qualities]
-    results_df = results_df[qualities]
-
-    # Convert everything to numeric
-    results_df = results_df.apply(pd.to_numeric, errors='coerce')
-    cvscoredf = cvscoredf.apply(pd.to_numeric, errors='coerce')
-
-    # Align indices if needed
-    cvscoredf.reset_index(drop=True, inplace=True)
-    results_df.reset_index(drop=True, inplace=True)
-
-    # Sum them up
-    results_df = results_df.add(cvscoredf, fill_value=0)
-    results_df['id'] = 0
-
-    # Display results
-    st.dataframe(results_df)
 
 
 df1 = new_data_df  # First dataset
