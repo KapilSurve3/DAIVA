@@ -11,3 +11,6 @@ matplotlib
 PyPDF2
 nltk
 transformers
+gspread
+oauth2client
+yagmail
