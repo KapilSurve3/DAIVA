@@ -1816,13 +1816,7 @@ if st.button("Generate QR Code"):
         # Display the QR code
         st.image(qr_img)
 
-        for index, row in merged_df.iterrows():
-                row['id'] = next_id
-                new_record =  row.tolist()  # Add the incremented ID
-                sheet.append_row(new_record, value_input_option="RAW")
-                next_id += 1  # Increment the ID for next record
-            
-        st.success(f"✅ New records with incremented IDs added successfully! 🚀")
+   
 
         with open("qr_code.png", "rb") as img_file:
             st.download_button("Download QR Code", img_file, file_name="qr_code.png")
