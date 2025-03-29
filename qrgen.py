@@ -1618,51 +1618,6 @@ import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-# Define the scope for Google Sheets and Drive API
-SCOPE = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/spreadsheets",
-         "https://www.googleapis.com/auth/drive"]
-
-# Path to your service account credentials file
-SERVICE_ACCOUNT_FILE = "db-gsheetskapil-d740f97d71c0.json"
-
-# Authenticate using the service account
-credentials = ServiceAccountCredentials.from_json_keyfile_name(SERVICE_ACCOUNT_FILE, SCOPE)
-client = gspread.authorize(credentials)
-
-# Open the Google Sheet
-sheet_url = "https://docs.google.com/spreadsheets/d/1CFinJcd72seWKhWFMWV6IuZB00ipkaA7q0VASaUAZaA/edit?usp=sharing"
-sheet = client.open_by_url(sheet_url).sheet1
-
-# Load dataset
-  # Replace with actual file path
-
-# Convert DataFrame to list format (including headers)
-data_with_headers = [merged_df.columns.tolist()] + merged_df.values.tolist()
-
-# Check if the sheet is empty and initialize headers
-if not sheet.get_all_values():
-    st.warning("Google Sheet is empty! Initializing with headers...")
-    sheet.append_row(merged_df.columns.tolist())
-    st.success("Headers added to the Google Sheet!")
-
-# Get the current data from Google Sheets to find the next ID
-existing_data = pd.DataFrame(sheet.get_all_records())
-existing_ids = existing_data['id'].tolist() if not existing_data.empty else []
-
-# Get the next ID (incrementing)
-next_id = max(existing_ids, default=0) + 1
-
-# Display the current data
-st.write("### Current Data in Google Sheet:")
-st.dataframe(existing_data)
-
-# Button to add records
-
-
-
-
-
-
 
 
 
@@ -1741,7 +1696,7 @@ if st.button("Generate QR Code"):
         # Prepare the data for QR code
         
         # Generate QR code
-        qr_data = generate_qr_code(positions,id_number)
+        qr_data = generate_qr_code(positions,name)
         # Encrypt data
         encrypted_data = encrypt(qr_data)
 
